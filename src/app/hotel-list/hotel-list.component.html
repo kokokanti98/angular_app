@@ -1,0 +1,33 @@
+    <div class="container">
+      <!--ngif ici si la variable hotels n'est pas null fa afficher la balise h2 HTML sinon elle va pas afficher-->
+        <h2 *ngIf="hotels && hotels.length > 0">{{ 'Voici la '+ getTitle() }}</h2>
+        <button class = "btn btn-primary" (click) = "toggleisNewBadge()">
+          <span class="material-icons-outlined">
+            {{ showBadge ? 'visibility_off' : 'visibility' }}
+          </span>
+          {{ showBadge ? 'Cacher' : 'Afficher' }} nouveau
+        </button>
+        <div class="row row-cols-1 row-cols-md-3">
+          <!--ngfor ici va faire une boucle de l'element HTML grâce aux nb d'élément dans la variable hotels-->
+            <div class="col" *ngFor = "let hotel of hotels">
+                <div class="card">
+                <!-- Une méthode d'asigner les variables appelé One-Way Binding-->
+                <img 
+                  [src]="hotel.imageUrl"
+                  [title]="hotel.hotelName" 
+                  class="card-img-top" 
+                  [alt]="hotel.hotelName">
+                <div class="card-body">
+                    <h5 class="card-title">
+                      <!-- Une méthode d'assigner les variables appelé Property Binding-->
+                      {{ hotel.hotelName }}
+                    </h5>
+                    <p class="card-text">
+                      {{ hotel.description }}
+                    </p>
+                    <span class="badge badge-info" *ngIf = "showBadge">Info</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
