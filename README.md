@@ -29,3 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Les choses faites sur la branche part:
 
 ### Installer bootstrap avec "npm install bootstrap -save" puis l'inclure dans le fichier style.css avec cette ligne: "@import '~bootstrap/dist/css/bootstrap.min.css';"
+
+### ng generate component HotelList // Pour construire un component HotelList
