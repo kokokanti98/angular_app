@@ -31,3 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Two way Binding, ngModel et ngModelChange
 
 ### Les Pipes(currency), importation de langue Fr sur le pipe
+
+### Les interfaces
+
+### Les cycles de vies
