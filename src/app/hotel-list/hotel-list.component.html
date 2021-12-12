@@ -12,10 +12,10 @@
             <div class="col" *ngFor = "let hotel of hotels">
                 <div class="card">
                 <!-- Une méthode d'asigner les variables appelé One-Way Binding-->
-                <img 
+                <img
                   [src]="hotel.imageUrl"
-                  [title]="hotel.hotelName" 
-                  class="card-img-top" 
+                  [title]="hotel.hotelName"
+                  class="card-img-top"
                   [alt]="hotel.hotelName">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -25,7 +25,7 @@
                     <p class="card-text">
                       {{ hotel.description }}
                     </p>
-                    <span class="badge badge-info" *ngIf = "showBadge">Info</span>
+                    <span class="badge badge-info" *ngIf = "showBadge">Nouveau</span>
                 </div>
                 </div>
             </div>
