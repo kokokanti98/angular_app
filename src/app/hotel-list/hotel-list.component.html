@@ -43,6 +43,8 @@
                       {{ hotel.description }}
                     </p>
                     <p class="card-text">
+                      <!-- le pipe currency pour les prix, EUR pour euros et symbol pour l'afficher en €, 1.2-2 pour minimum 2 chiffres après la virgule et 2 chiffres maximum-->
+                      <!--Puis fr pour mettre  en francçais-->
                       {{ hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'fr'}}
                     </p>
                     <span class="badge badge-info" *ngIf = "showBadge">Nouveau</span>
