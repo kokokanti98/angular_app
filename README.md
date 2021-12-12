@@ -34,4 +34,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Les interfaces
 
-### Les cycles de vies
+### Les cycles de vies(Oninit)
+
+### Get et Set en Typescript et créer une filtre de liste( hotel filtré)
