@@ -58,6 +58,7 @@ export class HotelListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Commencement du cycle de vie du composants');
   }
 
 }
