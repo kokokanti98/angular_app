@@ -30,8 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Installer bootstrap avec "npm install bootstrap -save" puis l'inclure dans le fichier style.css avec cette ligne: "@import '~bootstrap/dist/css/bootstrap.min.css';"
 
-### ng generate component HotelList // Pour construire un component HotelList et l'ajouter dans le component app
-
-### Ajout des images, une variable hotels dans le Typescript de HotelList, ngIf et ngFor dans le component HotelList
-
-### One-Way binding, Event(ici on utilise un onclick en typesscript)
+### Two way Binding
