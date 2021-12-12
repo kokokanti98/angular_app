@@ -7,6 +7,23 @@
           </span>
           {{ showBadge ? 'Cacher' : 'Afficher' }} nouveau
         </button>
+        <br>
+        <div class = "my-2">
+          <div class = "row">
+            <div class = "col-md-4">
+              <span> Filtre actuel: </span>
+              <b>{{ hotelFilter }}</b>
+            </div>
+            <div class = "col-md-8 form-group">
+              <!--ngModel fa prendre la valeur de la variable puis être afficher et ngModelChange permettra de changer la variable dynamiquement -->
+              <!-- Ceci formera le Two way Binding y a 2 formes ici longes et courtes -->
+              <!-- Ci- dessous est la forme longue-->
+              <!-- <input type="text" class="form-control" [ngModel] = "hotelFilter" (ngModelChange) = "hotelFilter = $event">-->
+              <!-- Ci- dessous est la forme courte-->
+              <input type="text" class="form-control" [(ngModel)] = "hotelFilter">
+            </div>
+          </div>
+        </div>
         <div class="row row-cols-1 row-cols-md-3">
           <!--ngfor ici va faire une boucle de l'element HTML grâce aux nb d'élément dans la variable hotels-->
             <div class="col" *ngFor = "let hotel of hotels">
@@ -14,7 +31,7 @@
                 <!-- Une méthode d'asigner les variables appelé One-Way Binding-->
                 <img
                   [src]="hotel.imageUrl"
-                  [title]="hotel.hotelName"
+                  [title]="hotel.hotelName | uppercase"
                   class="card-img-top"
                   [alt]="hotel.hotelName">
                 <div class="card-body">
@@ -24,6 +41,9 @@
                     </h5>
                     <p class="card-text">
                       {{ hotel.description }}
+                    </p>
+                    <p class="card-text">
+                      {{ hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'fr'}}
                     </p>
                     <span class="badge badge-info" *ngIf = "showBadge">Nouveau</span>
                 </div>

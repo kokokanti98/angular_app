@@ -48,6 +48,8 @@ export class HotelListComponent implements OnInit {
 
     // variable pour regler l'affichage du badge
     public showBadge: boolean = true;
+    
+    public hotelFilter = 'mot';
 
     // fonction pour changer la valeur de showBadge true<->false
     public toggleisNewBadge(): void {
