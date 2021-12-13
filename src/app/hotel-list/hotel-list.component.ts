@@ -18,31 +18,35 @@ export class HotelListComponent implements OnInit {
         hotelName: 'Buea sweet life',
         description: 'Belle vue au bord de la mer',
         price: 230.5,
-        imageUrl: 'assets/img/hotel-room.jpg'
+        imageUrl: 'assets/img/hotel-room.jpg',
+        rating: 3.5
       }, {
         id: 2,
         hotelName: 'Marakech',
         description: 'Profitez de la vue sur les montagnes',
         price: 145.5,
-        imageUrl: 'assets/img/the-interior.jpg'
+        imageUrl: 'assets/img/the-interior.jpg',
+        rating: 4
       }, {
         id: 3,
         hotelName: 'Abudja new look palace',
         description: 'Séjour complet avec service de voitures',
         price: 120.12,
-        imageUrl: 'assets/img/indoors.jpg'
+        imageUrl: 'assets/img/indoors.jpg',
+        rating: 2.5
       }, {
         id: 4,
         hotelName: 'Cape town city',
         description: 'Magnifique cadre pour votre séjour',
         price: 135.12,
-        imageUrl: 'assets/img/window.jpg'
+        imageUrl: 'assets/img/window.jpg',
+        rating: 5
       }
     ];
 
     // variable pour regler l'affichage du badge
     public showBadge: boolean = true;
-    // variable de filtre de recherche sur la lsite des hotels 
+    // variable de filtre de recherche sur la lsite des hotels
     // nommée une variable privée: private _mavar
     private _hotelFilter = 'mot';
     //variable pour la liste des hotels filtre via recherche sur

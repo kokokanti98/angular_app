@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                       <!-- Une méthode d'assigner les variables appelé Property Binding-->
-                      {{ hotel.hotelName }}
+                      {{ hotel.hotelName | titlecase}}
                     </h5>
                     <p class="card-text">
                       {{ hotel.description }}
@@ -45,8 +45,17 @@
                     <p class="card-text">
                       <!-- le pipe currency pour les prix, EUR pour euros et symbol pour l'afficher en €, 1.2-2 pour minimum 2 chiffres après la virgule et 2 chiffres maximum-->
                       <!--Puis fr pour mettre  en français-->
-                      {{ hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'fr'}}
+                      <!-- Pipe personalise replaceComma
+                      {{ 
+                        hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'fr' | replaceComma
+                      }}
+                      -->
+                      {{ 
+                        hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'fr'
+                      }}
                     </p>
+                    <!--le [rating] on va passer la valeur de hotel.rating du parent vers l'enfant-->
+                    <app-start-rating [rating] = "hotel.rating"></app-start-rating>
                     <span class="badge badge-info" *ngIf = "showBadge">Nouveau</span>
                 </div>
                 </div>

@@ -6,8 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 // Importer la langue francaise
 import localeFr from '@angular/common/locales/fr';
+// Importer le pipe personnalisé qui va remplacé les virgule par un point d'une valeur
+import { ReplaceComma } from './shared/pipes/replace-comma.pipe';
 import { AppComponent } from './app.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { StartRatingComponent } from './start-rating/start-rating.component';
 
 // On va appeller puis en passant par paramètre la langue et son abbréviation dans le code
 registerLocaleData(localeFr, 'fr');
@@ -15,7 +18,9 @@ registerLocaleData(localeFr, 'fr');
 @NgModule({
   declarations: [
     AppComponent,
-    HotelListComponent
+    HotelListComponent,
+    ReplaceComma,
+    StartRatingComponent
   ],
   imports: [
     BrowserModule,
