@@ -8,6 +8,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 // Importer le pipe personnalisé qui va remplacé les virgule par un point d'une valeur
 import { ReplaceComma } from './shared/pipes/replace-comma.pipe';
+// importer HttpClientModule du paquet angular/common/http pour utiliser HttpClient
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { StartRatingComponent } from './start-rating/start-rating.component';
@@ -25,7 +27,8 @@ registerLocaleData(localeFr, 'fr');
   imports: [
     BrowserModule,
     // Pour utiliser ngModel
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

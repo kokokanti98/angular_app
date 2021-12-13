@@ -18,35 +18,36 @@ export class HotelListComponent implements OnInit {
   // constructor(hotelListService: HotelListService) {
   //   this._hotelListService = hotelListService;
   // }
-
+  //variable pour le message d'erreur
+  public errorMsg: string = '';
   // Variable hotels contient les données de tous les hotels
   public hotels: IHotel[] = [];
 
-    // variable pour regler l'affichage du badge
-    public showBadge: boolean = true;
-    // de même type que la valeur de l'évènement qu'on appelle dans receiveRatingClicked()
-    public receivedRating: string = "";
-    // variable de filtre de recherche sur la lsite des hotels
-    // nommée une variable privée: private _mavar
-    private _hotelFilter = 'mot';
-    //variable pour la liste des hotels filtre via recherche sur
-    public filteredHotels: IHotel[] = [];
+  // variable pour regler l'affichage du badge
+  public showBadge: boolean = true;
+  // de même type que la valeur de l'évènement qu'on appelle dans receiveRatingClicked()
+  public receivedRating: string = "";
+  // variable de filtre de recherche sur la lsite des hotels
+  // nommée une variable privée: private _mavar
+  private _hotelFilter = 'mot';
+  //variable pour la liste des hotels filtre via recherche sur
+  public filteredHotels: IHotel[] = [];
 
-    // fonction pour changer la valeur de showBadge true<->false
-    public toggleisNewBadge(): void {
-      this.showBadge = !this.showBadge;
-    }
-    // Getteur de _hotelFilter
-    public get hotelFilter(): string{
-      return this._hotelFilter;
-    }
-    // Getteur de _hotelFilter
-    public set hotelFilter(filter: string){
-      //va changer la variable _hotelFilter
-      this._hotelFilter = filter;
-      // va changer la liste des hotel filtrer si _hotelfilter est vide alors la liste est hotels sinon la liste d'hotel change
-      this.filteredHotels = this.hotelFilter ? this.filterHotels(this.hotelFilter) : this.hotels;
-    }
+  // fonction pour changer la valeur de showBadge true<->false
+  public toggleisNewBadge(): void {
+    this.showBadge = !this.showBadge;
+  }
+  // Getteur de _hotelFilter
+  public get hotelFilter(): string{
+    return this._hotelFilter;
+  }
+  // Getteur de _hotelFilter
+  public set hotelFilter(filter: string){
+    //va changer la variable _hotelFilter
+    this._hotelFilter = filter;
+    // va changer la liste des hotel filtrer si _hotelfilter est vide alors la liste est hotels sinon la liste d'hotel change
+    this.filteredHotels = this.hotelFilter ? this.filterHotels(this.hotelFilter) : this.hotels;
+  }
   // fonction pour récupérer le title-> un getteur
   public getTitle(): string{
     return this.title;
@@ -73,9 +74,18 @@ export class HotelListComponent implements OnInit {
   constructor(private hotelListService: HotelListService) { }
 
   ngOnInit(): void {
-    this.hotels = this.hotelListService.getHotels();
-    // Au départ la liste filtrer sera la liste totale des hotels au lancement
-    this.filteredHotels = this.hotels;
+    this.hotelListService.getHotels().subscribe({
+      // next et error sont deux fonctions de base dans le subscribe
+      // hotels => ici veut dire la listes des hotels du fichier json et this.hotels sera la liste des hotels de cette classe
+      next: hotels => {
+        // insérer la liste des hotels recus dans le fichier json dans la variable
+        this.hotels = hotels;
+        // Au départ la liste filtrer sera la liste totale des hotels au lancement
+        this.filteredHotels = this.hotels;
+      },
+      error: err => this.errorMsg = err
+    });
+    this.hotelFilter = '';
     console.log('Commencement du cycle de vie du composants');
   }
 

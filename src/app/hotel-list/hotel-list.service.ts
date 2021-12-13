@@ -1,44 +1,47 @@
 import { Injectable } from '@angular/core';
 import { IHotel } from './hotel';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+// On en(Observable) a besoin pour récuperer les données d'un fichier json
+import { Observable, throwError } from 'rxjs';
+// Pour gérer les érreurs et tap pour afficher dans la console
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   // Afin d'avoir la possibilité d'utiliser HotelListService dans les composants
   providedIn: 'root'
 })
 export class HotelListService {
+
+  // Lien de la liste json se trouve qu'on a déclare dans "assets" du fichier angular.json 
+  private readonly HOTEL_API_URL = 'api/hotels.json';
+  // Pour utiliser HttpClient
+  constructor(private http: HttpClient) { 
+
+  }
   
-  public getHotels(): IHotel[] {
-    return [
-      {
-        id: 1,
-        hotelName: 'Buea sweet life',
-        description: 'Belle vue au bord de la mer',
-        price: 230.5,
-        imageUrl: 'assets/img/hotel-room.jpg',
-        rating: 3.5
-      }, {
-        id: 2,
-        hotelName: 'Marakech',
-        description: 'Profitez de la vue sur les montagnes',
-        price: 145.5,
-        imageUrl: 'assets/img/the-interior.jpg',
-        rating: 4
-      }, {
-        id: 3,
-        hotelName: 'Abudja new look palace',
-        description: 'Séjour complet avec service de voitures',
-        price: 120.12,
-        imageUrl: 'assets/img/indoors.jpg',
-        rating: 2.5
-      }, {
-        id: 4,
-        hotelName: 'Cape town city',
-        description: 'Magnifique cadre pour votre séjour',
-        price: 135.12,
-        imageUrl: 'assets/img/window.jpg',
-        rating: 5
-      }
-    ];
-  } 
+  public getHotels(): Observable<IHotel[]> {
+    // Va nous retourner la liste des hotels via requête http GET
+    return this.http.get<IHotel[]>(this.HOTEL_API_URL).pipe(
+      tap(hotels => console.log('hotels: ', hotels)),
+      catchError(this.handleHttpError)
+    );
+  }
+
+  // Fonction pour afficher les messages d'erreur prise du site de doc d'angular
+  private handleHttpError(err: HttpErrorResponse) {
+  if (err.error instanceof ErrorEvent) {
+    // A client-side or network error occurred. Handle it accordingly.
+    console.error('An error occurred:', err.error.message);
+  } else {
+    // The backend returned an unsuccessful response code.
+    // The response body may contain clues as to what went wrong.
+    console.error(
+      `Backend returned code ${err.status}, ` +
+      `body was: ${err.error}`);
+  }
+  // Return an observable with a user-facing error message.
+  return throwError(
+    'Something bad happened; please try again later.');
+}
 
 }
