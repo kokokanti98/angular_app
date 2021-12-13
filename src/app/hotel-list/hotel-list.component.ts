@@ -86,6 +86,7 @@ export class HotelListComponent implements OnInit {
     return res;
 
   }
+  // Fonction qui va changer la valeur de receivedRating
   public receiveRatingClicked(message: string): void{
     // Sur le composant HTML le message sera startRatingClicked.emit() du composant enfant via Output
     this.receivedRating = message;
