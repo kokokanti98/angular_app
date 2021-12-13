@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // on va importer l'interface IHotel du fichier hotel.ts
 import { IHotel } from './hotel';
+// On va importer les service HotelListService
+import { HotelListService } from './hotel-list.service';
 
 @Component({
   selector: 'app-hotel-list',
@@ -11,38 +13,14 @@ export class HotelListComponent implements OnInit {
 
   private title = 'liste des Hotels';
 
+  // Methode longue pour utiliser HotelListService pour manipulation des données de la liste des hotels
+  // private _hotelListService;
+  // constructor(hotelListService: HotelListService) {
+  //   this._hotelListService = hotelListService;
+  // }
+
   // Variable hotels contient les données de tous les hotels
-  public hotels: IHotel[] = [
-      {
-        id: 1,
-        hotelName: 'Buea sweet life',
-        description: 'Belle vue au bord de la mer',
-        price: 230.5,
-        imageUrl: 'assets/img/hotel-room.jpg',
-        rating: 3.5
-      }, {
-        id: 2,
-        hotelName: 'Marakech',
-        description: 'Profitez de la vue sur les montagnes',
-        price: 145.5,
-        imageUrl: 'assets/img/the-interior.jpg',
-        rating: 4
-      }, {
-        id: 3,
-        hotelName: 'Abudja new look palace',
-        description: 'Séjour complet avec service de voitures',
-        price: 120.12,
-        imageUrl: 'assets/img/indoors.jpg',
-        rating: 2.5
-      }, {
-        id: 4,
-        hotelName: 'Cape town city',
-        description: 'Magnifique cadre pour votre séjour',
-        price: 135.12,
-        imageUrl: 'assets/img/window.jpg',
-        rating: 5
-      }
-    ];
+  public hotels: IHotel[] = [];
 
     // variable pour regler l'affichage du badge
     public showBadge: boolean = true;
@@ -91,9 +69,11 @@ export class HotelListComponent implements OnInit {
     // Sur le composant HTML le message sera startRatingClicked.emit() du composant enfant via Output
     this.receivedRating = message;
   }
-  constructor() { }
+  // Racourci Typescript pour utiliser le service HotelListService
+  constructor(private hotelListService: HotelListService) { }
 
   ngOnInit(): void {
+    this.hotels = this.hotelListService.getHotels();
     // Au départ la liste filtrer sera la liste totale des hotels au lancement
     this.filteredHotels = this.hotels;
     console.log('Commencement du cycle de vie du composants');
