@@ -37,3 +37,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Les cycles de vies(Oninit)
 
 ### Get et Set en Typescript et créer une filtre de liste( hotel filtré)
+
+### Communication entre composant parent et enfant(Input)
+
+### Communication entre composant parent et enfant(Output)

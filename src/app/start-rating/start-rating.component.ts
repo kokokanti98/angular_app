@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-start-rating',
@@ -18,6 +18,15 @@ export class StartRatingComponent implements OnChanges {
   ngOnChanges(): void{
     // multiplié par la largeur total du container 125px / 5
     this.starWidth = this.rating * 125 / 5;
+  }
+
+  @Output()
+  // Servira de liaison entre composant parent et enfant qui renvoie un string
+  public startRatingClicked: EventEmitter<string> = new EventEmitter<string>();
+  // Fonction qui va se déclencher lors d'un onclick sur l'element html class:star-container
+  public sendRating(): void {
+    // on va faire  appel a la variable avec qui prend en paramèetre un string ici on affichera la valeur de rating
+    this.startRatingClicked.emit(`La note est de ${this.rating}`);
   }
 
 }

@@ -46,6 +46,8 @@ export class HotelListComponent implements OnInit {
 
     // variable pour regler l'affichage du badge
     public showBadge: boolean = true;
+    // de même type que la valeur de l'évènement qu'on appelle dans receiveRatingClicked()
+    public receivedRating: string = "";
     // variable de filtre de recherche sur la lsite des hotels
     // nommée une variable privée: private _mavar
     private _hotelFilter = 'mot';
@@ -84,7 +86,10 @@ export class HotelListComponent implements OnInit {
     return res;
 
   }
-
+  public receiveRatingClicked(message: string): void{
+    // Sur le composant HTML le message sera startRatingClicked.emit() du composant enfant via Output
+    this.receivedRating = message;
+  }
   constructor() { }
 
   ngOnInit(): void {
