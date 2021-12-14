@@ -13,7 +13,7 @@
         "description": "Profitez de la vue sur les montagnes",
         "price": 145.5,
         "imageUrl": "assets/img/the-interior.jpg",
-        "rating": ""
+        "rating": 2.5
   },
   {
         "hotelId": 3,
