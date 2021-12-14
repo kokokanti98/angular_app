@@ -29,3 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Les choses faites sur la branche part:
 
 ### Les routerLink et router-outlet pour faire du rootage
+
+### Lire les données des paramètres de l'URL et usage du routerLinkActive
