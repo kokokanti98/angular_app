@@ -28,18 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  
 ## Les choses faites sur la branche part:
 
-### Two way Binding, ngModel et ngModelChange
-
-### Les Pipes(currency), importation de langue Fr sur le pipe
-
-### Les interfaces
-
-### Les cycles de vies(Oninit)
-
-### Get et Set en Typescript et créer une filtre de liste( hotel filtré)
-
-### Communication entre composant parent et enfant(Input)
-
-### Communication entre composant parent et enfant(Output)
-
-### HttpCLient et Errorhandling avec RxJS
+### Les routerLink et router-outlet

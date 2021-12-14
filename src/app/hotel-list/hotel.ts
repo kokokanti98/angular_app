@@ -1,6 +1,6 @@
 // le export pour que notre interfacce soit visible
 export interface IHotel{
-    id: number;
+    hotelId: number;
     hotelName: string;
     description: string;
     price: number;

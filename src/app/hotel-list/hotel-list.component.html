@@ -58,9 +58,21 @@
                         hotel.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'fr'
                       }}
                     </p>
-                    <!--le [rating] on va passer la valeur de hotel.rating du parent vers l'enfant, décoration Input-->
-                    <!--le (startRatingClicked) ici c'est la décoration Output  ici $event sera le  fonction sendRating() de l'enfant qui initialise startRatingClicked->message-->
-                    <app-start-rating [rating] = "hotel.rating" (startRatingClicked) = "receiveRatingClicked($event)"></app-start-rating>
+                    <div class="d-flex justify-content-between align-items-baseline">
+                      <!--le [rating] on va passer la valeur de hotel.rating du parent vers l'enfant, décoration Input-->
+                      <!--le (startRatingClicked) ici c'est la décoration Output  ici $event sera le  fonction sendRating() de l'enfant qui initialise startRatingClicked->message-->
+                      <app-start-rating
+                        [rating]="hotel.rating"
+                        (startRatingClicked)="receiveRatingClicked($event)"
+                      ></app-start-rating>
+                      <!--Dans le  routerLInk ici on va appeller /hotels/id_hotel- donc on va récuperer l'id de l'hotel->
+                      <span
+                        class="material-icons bg-info text-white p-2 rounded-circle btn"
+                        [routerLink]="['/hotels', hotel.hotelId]"
+                      >
+                        keyboard_arrow_right
+                      </span>
+                    </div>
                     <span class="badge badge-info" *ngIf = "showBadge">Nouveau</span>
                 </div>
                 </div>

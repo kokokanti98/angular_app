@@ -12,7 +12,7 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class HotelListService {
 
-  // Lien de la liste json se trouve qu'on a déclare dans "assets" du fichier angular.json 
+  // Lien de la liste json se troe qu'on a déclare dans "assets" du fichier angular.json 
   private readonly HOTEL_API_URL = 'api/hotels.json';
   // Pour utiliser HttpClient
   constructor(private http: HttpClient) { 

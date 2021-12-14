@@ -10,9 +10,14 @@ import localeFr from '@angular/common/locales/fr';
 import { ReplaceComma } from './shared/pipes/replace-comma.pipe';
 // importer HttpClientModule du paquet angular/common/http pour utiliser HttpClient
 import { HttpClientModule } from '@angular/common/http';
+// Pour utiliser le routage
+import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { StartRatingComponent } from './start-rating/start-rating.component';
+import { HomeComponent } from './home/home.component';
+import { HotelDetailComponent } from './hotel-list/hotel-detail/hotel-detail.component';
 
 // On va appeller puis en passant par paramètre la langue et son abbréviation dans le code
 registerLocaleData(localeFr, 'fr');
@@ -22,13 +27,27 @@ registerLocaleData(localeFr, 'fr');
     AppComponent,
     HotelListComponent,
     ReplaceComma,
-    StartRatingComponent
+    StartRatingComponent,
+    HomeComponent,
+    HotelDetailComponent
   ],
   imports: [
     BrowserModule,
     // Pour utiliser ngModel
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      // Redirection vers home via '/home'
+      { path: 'home', component: HomeComponent },
+      // Redirection vers home quand on accède au serveur
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      // Redirection vers la liste des hotels quand on accède '/hotels'
+      { path: 'hotels', component: HotelListComponent },
+      // Redirection vers le detail d'un hotel quand on accède '/hotels/id'
+      { path: 'hotels/:id', component: HotelDetailComponent },
+      // Pour redirection sur les pages en cas de 404 vers home
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
