@@ -20,7 +20,7 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     // On va récupérer l'id de l'hotel selectionne
-    // ! est un non-null asertion operator pour dire que c'est pas une variable null ou undefined
+    // ! est un non-null assertion operator pour dire que c'est pas une variable null ou undefined
     const id: number = +this.route.snapshot.paramMap.get('id')!;
     // Afficher sur la console la valeur trouver
     console.log('ID de l\'hotel: ',  id);
