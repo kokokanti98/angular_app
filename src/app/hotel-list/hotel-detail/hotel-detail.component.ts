@@ -11,7 +11,7 @@ import { IHotel } from '../hotel';
 export class HotelDetailComponent implements OnInit {
 
   // Initialiser une variable de type IHotel en vide
-  public hotel: IHotel = <IHotel>{};
+  public hotel: IHotel | undefined = <IHotel>{};
   constructor
   (
     private route: ActivatedRoute,
@@ -20,7 +20,8 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     // On va récupérer l'id de l'hotel selectionne
-    const id: number = +this.route.snapshot.paramMap.get('id');
+    // ! est un non-null asertion operator pour dire que c'est pas une variable null ou undefined
+    const id: number = +this.route.snapshot.paramMap.get('id')!;
     // Afficher sur la console la valeur trouver
     console.log('ID de l\'hotel: ',  id);
     this.hotelListService.getHotels().subscribe((hotels: IHotel[]) => {
@@ -29,7 +30,7 @@ export class HotelDetailComponent implements OnInit {
       this.hotel = hotels.find((hotel: IHotel) => hotel.hotelId === id);
     });
     // Afficher les données de l'hotel séléctionner sur la console
-    console.log(this.hotel.rating);
+    console.log(this.hotel!.rating);
   }
 
 }
