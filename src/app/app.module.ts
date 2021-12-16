@@ -12,7 +12,8 @@ import { ReplaceComma } from './shared/pipes/replace-comma.pipe';
 import { HttpClientModule } from '@angular/common/http';
 // Pour utiliser le routage
 import { RouterModule } from '@angular/router';
-
+// Importer le module pour utiliser Guard
+import { HotelDetailGuard } from './hotel-list/hotel-detail.guard';
 import { AppComponent } from './app.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { StartRatingComponent } from './start-rating/start-rating.component';
@@ -44,7 +45,10 @@ registerLocaleData(localeFr, 'fr');
       // Redirection vers la liste des hotels quand on accède '/hotels'
       { path: 'hotels', component: HotelListComponent },
       // Redirection vers le detail d'un hotel quand on accède '/hotels/id'
-      { path: 'hotels/:id', component: HotelDetailComponent },
+      { 
+        path: 'hotels/:id', component: HotelDetailComponent,
+        canActivate: [HotelDetailGuard] 
+      },
       // Pour redirection sur les pages en cas de 404 vers home
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
