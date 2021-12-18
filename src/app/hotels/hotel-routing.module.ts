@@ -8,12 +8,15 @@ import { RouterModule } from '@angular/router';
 import { HotelDetailGuard } from './shared/guards/hotel-detail.guard';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { HotelEditComponent } from './hotel-edit/hotel-edit.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       // Redirection vers la liste des hotels quand on accède '/hotels'
       { path: 'hotels', component: HotelListComponent },
+      // Redirection vers la liste des hotels quand on accède '/hotels'
+      { path: 'hotels/:id/edit', component: HotelEditComponent },
       // Redirection vers le detail d'un hotel quand on accède '/hotels/id'
       {
         path: 'hotels/:id', component: HotelDetailComponent,

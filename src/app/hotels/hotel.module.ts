@@ -10,12 +10,14 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { HotelRoutingModule } from './hotel-routing.module';
 import { StartRatingComponent } from '../shared/start-rating/start-rating.component';
+import { HotelEditComponent } from './hotel-edit/hotel-edit.component';
 
 @NgModule({
   declarations: [
     HotelDetailComponent,
     HotelListComponent,
-    StartRatingComponent
+    StartRatingComponent,
+    HotelEditComponent
   ],
   imports: [
     SharedModule,

@@ -18,12 +18,32 @@
       <!--routerLinkActive fa permettre de mettre en clair(plus sombre) la nvabar où on l'est-->
       <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Acceuil</a>
       <!--Aller sur de la liste des hotels-->
-      <a class="nav-link" [routerLink]="['/hotels']" routerLinkActive="active">Liste</a>
+      <a 
+        class="nav-link" 
+        [routerLink]="['/hotels']" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Liste
+      </a>
+      <!--Aller sur de l'ajout d'un hotel-->
+      <!--
+        Ici le [routerLinkActiveOptions]="{ exact: true }" signifie que le routerLinkkActive marchera lorsqu'on click sur le lien
+        Il doit être déclarer sur le composant enfant et parent pour qu'il marche
+      -->
+      <a 
+        class="nav-link" 
+        [routerLink]="['/hotels','0','edit']" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Ajout d'hotel
+      </a>
     </div>
   </div>
 </nav>
 
-<div class="mt-5">
+<div class="mt-5 container">
   <!--directive qui va gérer les lens de routage-->
   <router-outlet></router-outlet>
 </div>
