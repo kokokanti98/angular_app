@@ -19,6 +19,7 @@ export class HotelEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private hotelService: HotelListService
   ) { }
 
@@ -28,8 +29,8 @@ export class HotelEditComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(50)]
       ],
-      hotelPrice: ['', Validators.required],
-      starRating: [''],
+      price: ['', Validators.required],
+      rating: [''],
       description: ['']
     });
     // On va récuperer la valeur du champ id sur l'url
@@ -54,7 +55,7 @@ export class HotelEditComponent implements OnInit {
     // Va attribuer les valeurs sur notre variable this.hotel
     this.hotel = hotel!;
     // Si l'id de l'hotel est 0 change le titre de la page en Créer sinon Modifier
-    if (this.hotel.hotelId === 0) {
+    if (this.hotel.id === 0) {
       this.pageTitle = 'Créer un hotel';
     } else {
       this.pageTitle = `Modifier l\'hotel ${this.hotel.hotelName}`;
@@ -62,14 +63,46 @@ export class HotelEditComponent implements OnInit {
     // On va mettre les valeurs de la variable hotel sur les champs du formulaire
     this.hotelForm.patchValue({
       hotelName: this.hotel.hotelName,
-      hotelPrice: this.hotel.price,
-      starRating: this.hotel.rating,
+      price: this.hotel.price,
+      rating: this.hotel.rating,
       description: this.hotel.description
     });
 
   }
   public saveHotel(): void {
+    // Si notre formulaire est valide
+    if(this.hotelForm.valid){
+      if(this.hotelForm.dirty){
+
+        const hotel: IHotel =  {
+          // retourner la valeur actuel de l'hotel
+          ...this.hotel,
+          // change la valeur de l'hotel
+          ...this.hotelForm.value
+        }
+        // Creer un nouveau Hotel
+        if( hotel.id === 0){
+            this.hotelService.createHotel(hotel).subscribe({
+              next: () => this.saveCompleted()
+            });
+        }
+        // Modifier un Hotel
+        else{
+          // va déclencher la fonction dans le service pour faire un update(maj)
+          this.hotelService.updateHotel(hotel).subscribe({
+            next: () => this.saveCompleted()
+          });
+        }
+
+      }
+    }
     console.log(this.hotelForm.value);
+  }
+  public saveCompleted(): void{
+    // Reset le formulaire
+    this.hotelForm.reset();
+    // Redirection sur la page des liste des hotels
+    this.router.navigate(['/hotels']);
   }
 
 }

@@ -28,7 +28,7 @@ export class HotelDetailComponent implements OnInit {
     this.hotelListService.getHotels().subscribe((hotels: IHotel[]) => {
       // Ici on va rechercher dans la liste d'hotels une avec une id selectionner
       // Et remplacer this.hotel par l'hotel du même id séléctionner
-      this.hotel = hotels.find((hotel: IHotel) => hotel.hotelId === id);
+      this.hotel = hotels.find((hotel: IHotel) => hotel.id === id);
     });
     // Afficher les données de l'hotel séléctionner sur la console
     console.log(this.hotel!.rating);

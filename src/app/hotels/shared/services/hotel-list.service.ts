@@ -31,23 +31,49 @@ export class HotelListService {
   }
 
   // Fonction qui nous retoune un Interface IHotel pour récuperer les données de cette même IHotel grâce à son id
-  public getHotelById(id: number): Observable<IHotel | undefined> {
+  public getHotelById(id: number): Observable<IHotel> {
+    // URL pour trouver un hotel par son id
+    const url = `${this.HOTEL_API_URL}/${id}`;
     if (id === 0) {
       return of(this.getDefaultHotel());
     }
-    return this.getHotels().pipe(
-      map(hotels => hotels.find(hotel => hotel.hotelId === id)),
+    // Pour trouver un hotel par son id
+    return this.http.get<IHotel>(url).pipe(
+      catchError(this.handleHttpError)
     );
   }
   private getDefaultHotel(): IHotel {
     return {
-      hotelId: 0,
+      id: 0,
       hotelName: '',
       description: '',
       price: 0,
       rating: 0,
       imageUrl: ''
     };
+  }
+  // Fonction sur le service pour faire la maj d'un hotel
+  public updateHotel(hotel: IHotel): Observable<IHotel> {
+     // URL de l'api pour la modification
+    const url = `${this.HOTEL_API_URL}/${hotel.id}`;
+    //Faire la modification
+    return this.http.put<IHotel>(url, hotel).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
+  // Fonction pour créer un Hotel
+  public createHotel(hotel: IHotel): Observable<IHotel>{
+    hotel = {
+      // on va prendre les valeur de hotel
+      ...hotel,
+      // ajouter des valeurs au champs imageUrl sur l'url des images
+      imageUrl: 'assets/img/hotel-room.jpg',
+      // Permet a InMemoryDb de faire un autoincrement
+      id: null
+    };
+    return this.http.post<IHotel>(this.HOTEL_API_URL, hotel).pipe(
+      catchError(this.handleHttpError)
+    );
   }
   // Fonction pour afficher les messages d'erreur prise du site de doc d'angular
   private handleHttpError(err: HttpErrorResponse) {
