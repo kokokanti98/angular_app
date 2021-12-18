@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // On en(Observable) a besoin pour récuperer les données d'un fichier json
 import { Observable, throwError } from 'rxjs';
 // Pour gérer les érreurs et tap pour afficher dans la console
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   // Afin d'avoir la possibilité d'utiliser HotelListService dans les composants
@@ -24,6 +24,18 @@ export class HotelListService {
     return this.http.get<IHotel[]>(this.HOTEL_API_URL).pipe(
       tap(hotels => console.log('hotels: ', hotels)),
       catchError(this.handleHttpError)
+    );
+  }
+
+  // Fonction qui nous retoune un Interface IHotel pour récuperer les données de cette même IHotel grâce à son id
+  public getHotelById(id: number): Observable<IHotel | undefined> {
+    /*
+    if (id === 0) {
+      return of(this.getDefaultHotel());
+    }
+    */
+    return this.getHotels().pipe(
+      map(hotels => hotels.find(hotel => hotel.hotelId === id)),
     );
   }
 
