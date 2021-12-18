@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  
 ## Les choses faites sur la branche part:
 
-### partie5
+### Intégrer in memory API sur notre projet angular, charger l'api in memory web api au lieu du fichier json
