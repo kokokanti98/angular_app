@@ -7,10 +7,11 @@ import localeFr from '@angular/common/locales/fr';
 // importer HttpClientModule du paquet angular/common/http pour utiliser HttpClient
 import { HttpClientModule } from '@angular/common/http';
 // Pour utiliser le routage
-import { RouterModule } from '@angular/router';
+// import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HotelModule } from './hotels/hotel.module';
+import { AppRoutingModule } from './app-routing.module';
 
 // On va appeller puis en passant par paramètre la langue et son abbréviation dans le code
 registerLocaleData(localeFr, 'fr');
@@ -24,15 +25,11 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     // Pour utiliser ngModel
     HttpClientModule,
-    RouterModule.forRoot([
-      // Redirection vers home via '/home'
-      { path: 'home', component: HomeComponent },
-      // Redirection vers home quand on accède au serveur
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      // Pour redirection sur les pages en cas de 404 vers home
-      { path: '**', redirectTo: 'home', pathMatch: 'full' }
-    ]),
-    HotelModule
+    // Si on  met HotelModule se  met après AppRoutingModule alors y aura un problème 
+    //  Ca te retournera tjr sur /home à cause du conf root '**'
+    HotelModule,
+    // Module pour le rootage
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

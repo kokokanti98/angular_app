@@ -19,6 +19,7 @@ import { StartRatingComponent } from '../shared/start-rating/start-rating.compon
   ],
   imports: [
     SharedModule,
+     // Module pour le rootage sur les hotels
     HotelRoutingModule
   ]
 })
