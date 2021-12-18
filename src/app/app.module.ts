@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// Afin d'utiliser le ngModel
-import { FormsModule } from '@angular/forms';
 // Nous permettra d'enregistrer une nouvelle langue. Vient du paquet angular/common
 import { registerLocaleData } from '@angular/common';
 // Importer la langue francaise
@@ -10,8 +8,6 @@ import localeFr from '@angular/common/locales/fr';
 import { HttpClientModule } from '@angular/common/http';
 // Pour utiliser le routage
 import { RouterModule } from '@angular/router';
-// Importer le module pour utiliser Guard
-import { HotelDetailGuard } from './hotels/shared/guards/hotel-detail.guard';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HotelModule } from './hotels/hotel.module';
@@ -27,7 +23,6 @@ registerLocaleData(localeFr, 'fr');
   imports: [
     BrowserModule,
     // Pour utiliser ngModel
-    FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
       // Redirection vers home via '/home'
