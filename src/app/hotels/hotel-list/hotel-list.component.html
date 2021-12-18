@@ -65,6 +65,13 @@
                         [rating]="hotel.rating"
                         (startRatingClicked)="receiveRatingClicked($event)"
                       ></app-start-rating>
+                      <!--Dans le  routerLInk ici on va appeller /hotels/id_hotel/edit pour modifier un hotel-->
+                      <span
+                        class="material-icons bg-warning text-white p-2 rounded-circle btn"
+                        [routerLink]="['/hotels', hotel.hotelId, 'edit']"
+                      >
+                        edit
+                      </span>
                       <!--Dans le  routerLInk ici on va appeller /hotels/id_hotel- donc on va récuperer l'id de l'hotel-->
                       <span
                         class="material-icons bg-info text-white p-2 rounded-circle btn"
