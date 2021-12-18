@@ -25,7 +25,7 @@ export class StartRatingComponent implements OnChanges {
   public startRatingClicked: EventEmitter<string> = new EventEmitter<string>();
   // Fonction qui va se déclencher lors d'un onclick sur l'element html class:star-container
   public sendRating(): void {
-    // on va faire  appel a la variable avec qui prend en paramèetre un string ici on affichera la valeur de rating
+    // on va faire  appel a la variable avec qui prend en paramètre un string ici on affichera la valeur de rating
     this.startRatingClicked.emit(`La note est de ${this.rating}`);
   }
 
