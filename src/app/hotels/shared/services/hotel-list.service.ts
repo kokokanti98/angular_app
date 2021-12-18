@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { IHotel } from '../models/hotel';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // On en(Observable) a besoin pour récuperer les données d'un fichier json
-import { Observable, throwError } from 'rxjs';
+// of qui permet de  créer un observable à partir d'un objet
+import { Observable, throwError, of } from 'rxjs';
 // Pour gérer les érreurs et tap pour afficher dans la console
 import { tap, catchError, map } from 'rxjs/operators';
 
@@ -29,16 +30,23 @@ export class HotelListService {
 
   // Fonction qui nous retoune un Interface IHotel pour récuperer les données de cette même IHotel grâce à son id
   public getHotelById(id: number): Observable<IHotel | undefined> {
-    /*
     if (id === 0) {
       return of(this.getDefaultHotel());
     }
-    */
     return this.getHotels().pipe(
       map(hotels => hotels.find(hotel => hotel.hotelId === id)),
     );
   }
-
+  private getDefaultHotel(): IHotel {
+    return {
+      hotelId: 0,
+      hotelName: '',
+      description: '',
+      price: 0,
+      rating: 0,
+      imageUrl: ''
+    };
+  }
   // Fonction pour afficher les messages d'erreur prise du site de doc d'angular
   private handleHttpError(err: HttpErrorResponse) {
   if (err.error instanceof ErrorEvent) {

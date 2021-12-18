@@ -45,6 +45,7 @@ export class HotelEditComponent implements OnInit {
   // Fonction pour chercher les données d'un hotel par son id sur notre fichier json
   public getSelectedHotel(id: number): void {
     this.hotelService.getHotelById(id).subscribe(hotel => {
+      console.log(hotel);
       // On déclenche cette fonction qui va attribuer à notre variable hotel les valeurs récupérer
       this.displayHotel(hotel);
     });

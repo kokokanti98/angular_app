@@ -1,6 +1,8 @@
 <div class="container">
   <div class="card">
-    <div class="card-header text-white bg-info">Créer un hotel</div>
+    <div class="card-header text-white bg-info">
+      {{  pageTitle }}
+    </div>
 
     <div class="card-body">
       <form novalidate (ngSubmit)="saveHotel()" [formGroup]="hotelForm">
