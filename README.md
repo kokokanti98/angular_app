@@ -28,4 +28,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  
 ## Les choses faites sur la branche part:
 
-### GGWP
+### Structurer l'application en modules
+
+### Isoler les routes dans un module de routage(Routing Module)
+
+### routerLinkActiveOptions pour rendre actif un lien enfant
+
+### Construire template formulaire, Connecter au FormBuilder
