@@ -17,6 +17,21 @@ export class HotelEditComponent implements OnInit {
   public errorMessage: string;
   // Variable IHotel
   public hotel: IHotel | undefined;
+  // Variable pour les messages de validation pour chaque champs du formulaire qui sont obligatoire
+  private validationMessages: { [key: string]: { [key: string]: string } } = {
+    hotelName: {
+      required: 'Le nom de l\'hôtel est obligatoire.',
+      minlength: 'Le nom de l\'hôtel doit comporter au moins trois caractères.',
+      maxlength: 'Le nom de l\'hôtel ne peut pas dépasser 50 caractères.'
+    },
+    price: {
+      required: 'le prix de l\'hôtel est obligatoire.',
+      pattern: 'Veuillez entrer un nombre svp.'
+    },
+    rating: {
+      range: 'Donnez une note à l\'hôtel entre 1 (le plus bas) et 5 (le plus élevé).'
+    }
+  };
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
