@@ -14,6 +14,7 @@ export class HotelEditComponent implements OnInit {
 
   public pageTitle: string;
   public hotelForm: FormGroup;
+  public errorMessage: string;
   // Variable IHotel
   public hotel: IHotel | undefined;
   constructor(
@@ -83,14 +84,16 @@ export class HotelEditComponent implements OnInit {
         // Creer un nouveau Hotel
         if( hotel.id === 0){
             this.hotelService.createHotel(hotel).subscribe({
-              next: () => this.saveCompleted()
+              next: () => this.saveCompleted(),
+              error: (err) => this.errorMessage = err
             });
         }
         // Modifier un Hotel
         else{
           // va déclencher la fonction dans le service pour faire un update(maj)
           this.hotelService.updateHotel(hotel).subscribe({
-            next: () => this.saveCompleted()
+            next: () => this.saveCompleted(),
+            error: (err) => this.errorMessage = err
           });
         }
 
@@ -98,6 +101,24 @@ export class HotelEditComponent implements OnInit {
     }
     console.log(this.hotelForm.value);
   }
+  // Fonction pouur supprimer un hotel
+  public deleteHotel(): void {
+
+    if (this.hotel.id === 0) {
+      this.saveCompleted();
+    }
+    // Si l hotel existe
+    else {
+      if (confirm(`Voulez-vous réelement supprimer ${this.hotel.hotelName} ?`)) {
+        this.hotelService.deleteHotel(this.hotel.id).subscribe({
+          next: () => this.saveCompleted(),
+          error: (err) => this.errorMessage = err
+        });
+      }
+    }
+
+  }
+  // Fonction qui se déclenche après avoir finis d a pporter des changements ds la bdd
   public saveCompleted(): void{
     // Reset le formulaire
     this.hotelForm.reset();

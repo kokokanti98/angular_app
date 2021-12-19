@@ -75,6 +75,16 @@ export class HotelListService {
       catchError(this.handleHttpError)
     );
   }
+  //Fonction pour supprimmer un hotel
+  public deleteHotel(id: number): Observable<{}> {
+    const url = `${this.HOTEL_API_URL}/${id}`;
+
+    return this.http.delete<IHotel>(url).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
+
+
   // Fonction pour afficher les messages d'erreur prise du site de doc d'angular
   private handleHttpError(err: HttpErrorResponse) {
   if (err.error instanceof ErrorEvent) {

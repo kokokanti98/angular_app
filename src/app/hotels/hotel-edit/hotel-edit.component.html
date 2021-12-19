@@ -73,12 +73,22 @@
           <div class="offset-md-2 col-md-8">
             <button class="btn btn-info mr-3" type="submit">Sauvegarder</button>
             <!--Btn qui va nous renvoyer sur la lsite des hotels-->
-            <button class="btn btn-outline-secondary mr-3" type="button"
-              title="Annuler les modifications" [routerLink]="['/hotels']">
+            <button
+              class="btn btn-outline-secondary mr-3"
+              type="button"
+              title="Annuler les modifications"
+              [routerLink]="['/hotels']"
+            >
               Annuler
             </button>
-            <button class="btn btn-outline-danger" type="button"
-              title="Supprimer cet hotel">
+            <!--Btn pour supprimer si hotel.id == 0 alors on ne pas cliquer sur le btn-->
+            <button
+              class="btn btn-outline-danger"
+              type="button"
+              title="Supprimer cet hotel"
+              [disabled]="hotel?.id === 0"
+              (click)="deleteHotel()"
+            >
               Supprimer
             </button>
           </div>
@@ -91,7 +101,7 @@
       {{ errorMessage }}
     </div>
     -->
-    
+
     <!--Va afficher sur le navigateur les données du formulaire sous format json-->
     <!--
     <pre>
