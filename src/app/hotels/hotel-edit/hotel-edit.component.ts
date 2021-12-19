@@ -32,7 +32,8 @@ export class HotelEditComponent implements OnInit {
       ],
       price: ['', Validators.required],
       rating: [''],
-      description: ['']
+      description: [''],
+      tags: this.fb.array([])
     });
     // On va récuperer la valeur du champ id sur l'url
     this.route.paramMap.subscribe(params => {
@@ -68,6 +69,7 @@ export class HotelEditComponent implements OnInit {
       rating: this.hotel.rating,
       description: this.hotel.description
     });
+    this.hotelForm.setControl('tags', this.fb.array(this.hotel.tags || []));
 
   }
   public saveHotel(): void {
@@ -93,6 +95,7 @@ export class HotelEditComponent implements OnInit {
           // va déclencher la fonction dans le service pour faire un update(maj)
           this.hotelService.updateHotel(hotel).subscribe({
             next: () => this.saveCompleted(),
+            // Ici on va passer a errorMessage le message d'erreur afficher
             error: (err) => this.errorMessage = err
           });
         }
@@ -103,7 +106,6 @@ export class HotelEditComponent implements OnInit {
   }
   // Fonction pouur supprimer un hotel
   public deleteHotel(): void {
-
     if (this.hotel.id === 0) {
       this.saveCompleted();
     }
@@ -112,6 +114,7 @@ export class HotelEditComponent implements OnInit {
       if (confirm(`Voulez-vous réelement supprimer ${this.hotel.hotelName} ?`)) {
         this.hotelService.deleteHotel(this.hotel.id).subscribe({
           next: () => this.saveCompleted(),
+          // Ici on va passer a errorMessage le message d'erreur afficher
           error: (err) => this.errorMessage = err
         });
       }
@@ -124,6 +127,23 @@ export class HotelEditComponent implements OnInit {
     this.hotelForm.reset();
     // Redirection sur la page des liste des hotels
     this.router.navigate(['/hotels']);
+  }
+  // Getteur du champ tags
+  public get tags(): FormArray {
+    return this.hotelForm.get('tags') as FormArray;
+  }
+  // Ajouter un tag
+  public addTag(): void {
+    this.tags.push(new FormControl());
+  }
+  // Supprimer un t ag
+  public deleteTag(index: number): void {
+    this.tags.removeAt(index);
+    this.tags.markAsDirty();
+  }
+  // Met en null errorMessage pour par la suite grâce au ngIf cacher le div de errorMessage
+  public hideErrorMessage(): void {
+    this.errorMessage = null;
   }
 
 }

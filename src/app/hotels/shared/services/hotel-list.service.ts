@@ -13,15 +13,15 @@ import { tap, catchError, map } from 'rxjs/operators';
 })
 export class HotelListService {
 
-  // Lien de la liste json se troe qu'on a déclare dans "assets" du fichier angular.json 
+  // Lien de la liste json se troe qu'on a déclare dans "assets" du fichier angular.json
   //private readonly HOTEL_API_URL = 'api/hotels.json';
   // Pour utiliser l'api angular in memory web api
   private readonly HOTEL_API_URL = 'api/hotels';
   // Pour utiliser HttpClient
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
-  
+
   public getHotels(): Observable<IHotel[]> {
     // Va nous retourner la liste des hotels via requête http GET
     return this.http.get<IHotel[]>(this.HOTEL_API_URL).pipe(
@@ -85,21 +85,27 @@ export class HotelListService {
   }
 
 
-  // Fonction pour afficher les messages d'erreur prise du site de doc d'angular
-  private handleHttpError(err: HttpErrorResponse) {
+// Fonction pour afficher les messages d'erreur prise du site de doc d'angular
+private handleHttpError(err: HttpErrorResponse) {
+  let error: string;
   if (err.error instanceof ErrorEvent) {
     // A client-side or network error occurred. Handle it accordingly.
     console.error('An error occurred:', err.error.message);
+    error = `An error occurred: ${err.error.message}`;
   } else {
     // The backend returned an unsuccessful response code.
     // The response body may contain clues as to what went wrong.
     console.error(
       `Backend returned code ${err.status}, ` +
       `body was: ${err.error}`);
+      error = `Backend returned code ${err.status}, body was: ${err.error}`;
   }
   // Return an observable with a user-facing error message.
   return throwError(
-    'Something bad happened; please try again later.');
+    'Something bad happened; please try again later.'
+    + '\n'
+    + error
+  );
 }
 
 }
