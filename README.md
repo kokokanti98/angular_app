@@ -28,14 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  
 ## Les choses faites sur la branche part:
 
-### Intégrer in memory API sur notre projet angular, charger l'api in memory web api au lieu du fichier json
-
-### Ajout, Modification et Suppression d'un hotel
-
-### Ajouter et supprimer dynamiquement des champs sur le formulaire
-
-### Créer, modifier, supprimer des élément du formArray
-
-### Intercepter les erreurs et les afficher sur la partie front de la page
-
-### Créer un validator generique et global(sans appel pour le moment)
+### partie6
