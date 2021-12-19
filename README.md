@@ -30,4 +30,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Intégrer in memory API sur notre projet angular, charger l'api in memory web api au lieu du fichier json
 
-### Ajout et Modification d'un hotel
+### Ajout, Modification et Suppression d'un hotel
+
+### Intercepter les erreurs et les afficher sur la partie front de la page
