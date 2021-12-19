@@ -37,3 +37,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Créer, modifier, supprimer des élément du formArray
 
 ### Intercepter les erreurs et les afficher sur la partie front de la page
+
+### Créer un validator generique et global(sans appel pour le moment)
