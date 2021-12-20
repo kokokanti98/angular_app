@@ -62,17 +62,20 @@ export class TaskListComponent implements OnInit {
   }
   // Fonction pour Reset
   public Reset(){
-    // reinitialiser les variables
-    this.nb_chk_case = 0;
-    this._progress = 0;
-    // uncheck tous les case à cocher
-    // Boucle pour parcourir chaque checkbox
-    for (let i = 1; i <= this.tasks.length; i++) {
-      // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
-      const selectedCheckBox = document.getElementById(i.toString()) as HTMLInputElement;
-      // Si la case à cocher est cocher alors on va la non cocher
-      if (selectedCheckBox.checked == true){
-        selectedCheckBox.checked = false;
+    // Va demander la confirmation à l'utilisateur avant d'éxecuter le reset
+    if(confirm("Etes-vous sure de vouloir recommencer ?")) {
+      // reinitialiser les variables
+      this.nb_chk_case = 0;
+      this._progress = 0;
+      // uncheck tous les case à cocher
+      // Boucle pour parcourir chaque checkbox
+      for (let i = 1; i <= this.tasks.length; i++) {
+        // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
+        const selectedCheckBox = document.getElementById(i.toString()) as HTMLInputElement;
+        // Si la case à cocher est cocher alors on va la non cocher
+        if (selectedCheckBox.checked == true){
+          selectedCheckBox.checked = false;
+        }
       }
     }
   }
@@ -80,8 +83,8 @@ export class TaskListComponent implements OnInit {
   public ChangerProgressBar(p_number: number){
     // variable pour le pourcentage le toFixed pour arrondir 2 chiffres après la virgule
     let percentage = ((p_number / this.tasks.length) * 100).toFixed(2);
-    console.log("Le pourcentage actuel est de :" + percentage);
-    const ProgessBarElem = document.getElementById('myBar') as HTMLInputElement;
+    //console.log("Le pourcentage actuel est de :" + percentage);
+    // Pour changer la valeur du progress bar
     this._progress = +percentage;
     // Afficher sur l'écran si la progression est de 100% un message de félicitation
     if(+percentage == 100) {
