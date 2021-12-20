@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 // Afin d'utiliser le ngModel
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Nous permettra d'enregistrer une nouvelle langue. Vient du paquet angular/common
 import { registerLocaleData } from '@angular/common';
 // Importer la langue francaise
@@ -26,6 +26,8 @@ import { TaskData } from './task/shared/api/tasks.data';
   imports: [
     BrowserModule,
     FormsModule,
+    // Pour utiliser les FormGroup et autres
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
       // Redirection vers home via '/tasks'
