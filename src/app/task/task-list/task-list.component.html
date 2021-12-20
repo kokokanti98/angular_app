@@ -1,1 +1,45 @@
-<p>task-list works!</p>
+<div class="container">
+  <!--Formulaire pour ajouter une nouvelle tâche begin-->
+  <app-task-form [list_length]="tasks.length"></app-task-form>
+  <!--Formulaire pour ajouter une nouvelle tâche end-->
+
+  <!--Code pour afficher la liste des tâches  avec *ngFor begin-->
+  <div class="form-check" *ngFor = "let task of tasks">
+  <input 
+    class="form-check-input" 
+    type="checkbox" 
+    value="" 
+    [id]="task.id"
+    (click) = "CaseCocher(task.id)"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      {{ task.taskName }}
+  </label>
+  </div>
+  <!--Code pour afficher la liste des tâches avec *ngFor end-->
+
+  <!--Code pour la progress bar begin-->
+  <div class="progress">
+  <div 
+    class="progress-bar" 
+    role="progressbar" 
+    [style.width.%]="progress" 
+    aria-valuemin="0" 
+    aria-valuemax="100"
+  >
+    {{ progress }}
+  </div>
+  </div>
+  <!--Code pour la progress bar end-->
+
+  <!--Bouton Reset begin-->
+  <button 
+    type="button" 
+    class="btn btn-dark"
+    (click) = "Reset()"
+  >
+    Reset
+  </button>
+  <!--Bouton Reset end-->
+
+</div>

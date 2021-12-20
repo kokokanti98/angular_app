@@ -1,1 +1,8 @@
-<p>task-form works!</p>
+<h2 *ngIf="list_length && list_length > 0">{{ 'Voici la '+ title }}</h2>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Nouvelle Tâche" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-info" type="button">Entrer</button>
+  </div>
+</div>
