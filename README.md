@@ -26,3 +26,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 "# angular_app" 
+
+## Ce qu'on peut faire:
+
+### Affichage de la liste des tâches via InMemoryWebAPI Angular
+
+### Cocher et décocher les tâches avec une barre de complétion
+
+### Un button reset pour recommencer se déclenche après avoir demandé la confirmation de l'utilisateur
