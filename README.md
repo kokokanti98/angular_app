@@ -33,4 +33,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Cocher et décocher les tâches avec une barre de complétion
 
-### Ajout de Guard sur le rootage afin de mieux sécuriser la navigation(en cours)
+### Ajout de Guard sur le rootage afin de mieux sécuriser la navigation(dans le cas ou l'utilisateur essaie d'accéder à un url avec valeur de l'id négatif ou pas un nombre)
