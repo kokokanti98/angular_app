@@ -10,12 +10,19 @@ import localeFr from '@angular/common/locales/fr';
 import { HttpClientModule } from '@angular/common/http';
 // Pour utiliser le routage
 import { RouterModule } from '@angular/router';
+// Pour utiliser l'api d'Angular
 import  { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// Importer le module pour utiliser Guard
+import { TaskGuard } from './task/shared/guards/task.guard';
 
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskFormComponent } from './task/task-form/task-form.component';
 import { TaskData } from './task/shared/api/tasks.data';
+
+
+// On va appeller puis en passant par paramètre la langue et son abbréviation dans le code
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -33,7 +40,12 @@ import { TaskData } from './task/shared/api/tasks.data';
       // Redirection vers home via '/tasks'
       { path: 'tasks', component: TaskListComponent },
       // Redirection vers home via '/tasks/id'
-      { path: 'tasks/:id', component: TaskListComponent },
+      // le guard pour sécuriser l'accès sur l'url par exemple si l'utilisateur entre en parametre id un varchar ou soit un nombre négatif
+      // Ca va renvoyer directement sur la page /task
+      { 
+        path: 'tasks/:id', component: TaskListComponent,
+        canActivate: [TaskGuard] 
+      },
       // Redirection vers task quand on accède au serveur
       { path: '', redirectTo: 'tasks', pathMatch: 'full' },
       // Pour redirection sur les pages en cas de 404 vers task

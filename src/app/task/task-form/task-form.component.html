@@ -1,18 +1,20 @@
 <h1>{{ pageTitle }}</h1>
+<!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
-    <input 
-      type="text" 
-      class="form-control" 
-      placeholder="Nouvelle Tâche" 
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nouvelle Tâche"
       aria-describedby="basic-addon2"
       formControlName="taskName"
       (click) = "AddNavTask(selectedTaskInput.id)"
     >
     <div class="input-group-append">
       <button class="btn btn-outline-info" type="submit">Sauvegarder</button>
-      <button 
-        class="btn btn-outline-danger" 
+      <!--Si on choisi de créer une nouvelle tâche le bouton supprimer se mettra en disabled donc il ne marchera pas-->
+      <button
+        class="btn btn-outline-danger"
         type="button"
         [disabled]="selectedTaskInput?.id === 0"
         (click) = "deleteTask()"
@@ -22,6 +24,7 @@
     </div>
   </div>
 </form>
+<!--Formulaire pour ajout, modification et suppression d'une tâche /end-->
 
 
 <!--Va nous afficher sur notre  navigateur web les données du formulaires si on le decommente-->

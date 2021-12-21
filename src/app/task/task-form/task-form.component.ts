@@ -19,7 +19,7 @@ export class TaskFormComponent implements OnInit {
   public errorMessage: string;
   // Formulaire
   public taskForm: FormGroup;
-  
+
   // valeur de la tâche input selectionner qu'on va mettre dans le formulaire
   public selectedTaskInput: ITask;
   constructor(
@@ -41,10 +41,9 @@ export class TaskFormComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       //l'assigner à une variable constante id
       const id = +params.get('id')!;
-      console.log("ID maintenant est :" + id);
-      this.getSelectedTask(id);
+      console.log("ID(0 ou null pour insertion) de la tâche selectionner maintenant est :" + id);
       // Lancer cette fonctions qui va récupérer les données de l'id de la tache selectionner
-      //this.getSelectedHotel(id);
+      this.getSelectedTask(id);
     })
     this.pageTitle = 'Créer une tâche';
 
@@ -54,8 +53,7 @@ export class TaskFormComponent implements OnInit {
     this.taskService.getTaskById(id).subscribe(task => {
       // Afficher la tâche selectionner dans la console
       console.log(task);
-      // Affecter sur la variable la tâche selectionner
-      //this.selectedTaskInput = task;
+      // Try catch car il se peut qu'au début le task pourrai être null pour éviter les erreurs
       try {
           this.displayTask(task);
       }
@@ -63,12 +61,13 @@ export class TaskFormComponent implements OnInit {
       //console.error('Here is the error message', error);
       }
     })
-   
   }
   // Pour afficher les valeurs de la tâche selectionner sur le formulaire
   public displayTask(task : ITask): void {
+    // Affecter la variable ITask task en paramètre sur notre variable selectedTaskInput qui est notre tâche selectionner
     this.selectedTaskInput = task;
-    console.log("Inside display begin");
+    //console.log("Inside display begin");
+    // Afficher dans la console notre tâche selectionner
     console.log(this.selectedTaskInput);
     // Si l'id de la tâche est 0 ou non défini, change le titre de la page en Créer sinon Modifier
     if (task.id === 0 || !task.id) {
