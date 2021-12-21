@@ -29,6 +29,53 @@ export class TaskListService {
       catchError(this.handleHttpError)
     );
   }
+  // Fonction qui nous retoune un Interface ITask pour récuperer les données de cette même ITask grâce à son id
+  public getTaskById(id: number): Observable<ITask> {
+    // Si l'id est 0 ou soit pas un nombre on charge celui de par defaut(mode insertion)
+    if (id === 0 || !id) {
+      return of(this.getDefaultTask());
+    }
+    return this.getTasks().pipe(
+      map(tasks => tasks.find(task => task.id === id)),
+    );
+  }
+  private getDefaultTask(): ITask {
+    return {
+      id: 0,
+      taskName: ''
+    };
+  }
+
+  // Fonction sur le service pour faire la maj d'une tache
+  public updateTask(task: ITask): Observable<ITask> {
+     // URL de l'api pour la modification
+    const url = `${this.TASK_API_URL}/${task.id}`;
+    //Faire la modification
+    return this.http.put<ITask>(url, task).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
+  // Fonction pour créer une tache
+  public createTask(task: ITask): Observable<ITask>{
+    task = {
+      // on va prendre les valeur de a tache
+      ...task,
+      // Permet a InMemoryDb de faire un autoincrement
+      id: null
+    };
+    return this.http.post<ITask>(this.TASK_API_URL, task).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
+  //Fonction pour supprimmer une tache
+  public deleteTask(id: number): Observable<{}> {
+    const url = `${this.TASK_API_URL}/${id}`;
+
+    return this.http.delete<ITask>(url).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
+
   private handleHttpError(err: HttpErrorResponse) {
     if (err.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

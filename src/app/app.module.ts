@@ -32,6 +32,8 @@ import { TaskData } from './task/shared/api/tasks.data';
     RouterModule.forRoot([
       // Redirection vers home via '/tasks'
       { path: 'tasks', component: TaskListComponent },
+      // Redirection vers home via '/tasks/id'
+      { path: 'tasks/:id', component: TaskListComponent },
       // Redirection vers task quand on accède au serveur
       { path: '', redirectTo: 'tasks', pathMatch: 'full' },
       // Pour redirection sur les pages en cas de 404 vers task

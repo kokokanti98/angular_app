@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // on va importer l'interface ITask du fichier task.ts
 import { ITask } from '../shared/models/task';
+import { Router } from '@angular/router';
 // On va importer les service taskListService
 import { TaskListService } from '../shared/services/task-list.service';
 
@@ -11,6 +12,8 @@ import { TaskListService } from '../shared/services/task-list.service';
 })
 export class TaskListComponent implements OnInit {
 
+  // Titre pour la liste des tâches
+  public titleTaslList = 'liste des tâches aujourd\'hui';
   // Variable tasks contient les données de tous les tâches
   public tasks: ITask[] = [];
   //variable pour le message d'erreur
@@ -19,7 +22,11 @@ export class TaskListComponent implements OnInit {
   private nb_chk_case: number;
   // variable pour le pourcentage de completion la progressbar
   private _progress: number;
-  constructor(private taskListService: TaskListService) { }
+
+  constructor(
+    private taskListService: TaskListService,
+    private router: Router,
+  ) { }
 
   // Getteur de _progress
   public get progress(): number{
@@ -30,6 +37,7 @@ export class TaskListComponent implements OnInit {
     //va changer la variable _progress
     this._progress = percentage;
   }
+
   ngOnInit(): void {
     // Va déclencher la fonction pour prendre tous les tâches dans la base de données
     this.taskListService.getTasks().subscribe({
@@ -70,12 +78,18 @@ export class TaskListComponent implements OnInit {
       // uncheck tous les case à cocher
       // Boucle pour parcourir chaque checkbox
       for (let i = 1; i <= this.tasks.length; i++) {
-        // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
-        const selectedCheckBox = document.getElementById(i.toString()) as HTMLInputElement;
-        // Si la case à cocher est cocher alors on va la non cocher
-        if (selectedCheckBox.checked == true){
-          selectedCheckBox.checked = false;
+        try {
+          // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
+          const selectedCheckBox = document.getElementById(i.toString()) as HTMLInputElement;
+          // Si la case à cocher est cocher alors on va la non cocher
+          if (selectedCheckBox.checked == true){
+            selectedCheckBox.checked = false;
+          }
         }
+        catch (error) {
+          //console.error('Here is the error message', error);
+        }
+
       }
     }
   }
@@ -90,6 +104,11 @@ export class TaskListComponent implements OnInit {
     if(+percentage == 100) {
       alert("Félicitations !");
     }
+  }
+
+  // Utilise ca
+  public getSelectedId(id: number){
+    this.router.navigate(['/tasks/'+ id]);
   }
 
 }

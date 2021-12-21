@@ -1,8 +1,11 @@
 <div class="container">
   <!--Formulaire pour ajouter une nouvelle tâche begin-->
-  <app-task-form [list_length]="tasks.length"></app-task-form>
+  <app-task-form></app-task-form>
   <!--Formulaire pour ajouter une nouvelle tâche end-->
 
+  <!--Title begin-->
+  <h2>{{ 'Voici la '+ titleTaslList }}</h2>
+  <!--Title end-->
   <!--Code pour afficher la liste des tâches  avec *ngFor begin-->
   <div class="form-check" *ngFor = "let task of tasks">
   <input 
@@ -12,7 +15,7 @@
     [id]="task.id"
     (click) = "CaseCocher(task.id)"
   />
-  <label class="form-check-label" for="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault" (click) = "getSelectedId(task.id)">
       {{ task.taskName }}
   </label>
   </div>
@@ -26,6 +29,7 @@
     [style.width.%]="progress" 
     aria-valuemin="0" 
     aria-valuemax="100"
+    id = "myBar"
   >
     {{ progress }}
   </div>
