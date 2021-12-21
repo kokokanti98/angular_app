@@ -77,7 +77,7 @@ export class TaskListComponent implements OnInit {
       this._progress = 0;
       // uncheck tous les case à cocher
       // Boucle pour parcourir chaque checkbox
-      for (let i = 1; i <= this.tasks.length; i++) {
+      for (let i = 1; i <= this.tasks.length + 2; i++) {
         try {
           // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
           const selectedCheckBox = document.getElementById(i.toString()) as HTMLInputElement;
