@@ -29,8 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Ce qu'on peut faire:
 
-### Affichage de la liste des tâches via InMemoryWebAPI Angular
+### Affichage, suppression, modification et insertion des données des listes des tâches via InMemoryWebAPI Angular
 
 ### Cocher et décocher les tâches avec une barre de complétion
 
-### Un button reset pour recommencer se déclenche après avoir demandé la confirmation de l'utilisateur
+### Ajout de Guard sur le rootage afin de mieux sécuriser la navigation(en cours)
