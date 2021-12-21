@@ -39,11 +39,16 @@
 </form>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /end-->
 
-<!--Message à l'utilisateur sur la validation du formulaire begin-->
-<div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.status =='INVALID'">
-  La valeur entrer doit être supérieur ou égal à 3 caractères
+<!--Message à l'utilisateur sur la validation du formulaire sur le champ taskName begin-->
+<div *ngIf = "taskForm.get('taskName').invalid && 
+        taskForm.get('taskName').errors && 
+        (taskForm.get('taskName').dirty || taskForm.get('taskName').touched)">
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('minlength')">
+    La valeur entrer doit être supérieur ou égal à 3 caractères
+  </div>
 </div>
-<!--Message à l'utilisateur sur la validation du formulaire end-->
+<!--Message à l'utilisateur sur la validation du formulaire sur le champ taskName end-->
+
 
 
 
