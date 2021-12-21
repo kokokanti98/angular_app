@@ -1,3 +1,15 @@
+<div
+    class="alert alert-danger mt-2 mb-2 d-flex align-items-center"
+    *ngIf="errorMessage"
+>
+  <!--Si errorMessage existe alors on va afficher notre div pour le message d"erreur-->
+  <!--Puis par la suite si l'utilisateur aura l'option de cliquer sur X pour fermer le message d'érreur de la page-->
+  <span class="material-icons mr-2">error</span>
+    {{ errorMessage }}
+  <span class="material-icons ml-auto" (click)="hideErrorMessage()">
+    close
+  </span>
+</div>
 <h1>{{ pageTitle }}</h1>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
@@ -10,6 +22,7 @@
       formControlName="taskName"
       (click) = "AddNavTask(selectedTaskInput.id)"
     >
+    
     <div class="input-group-append">
       <button class="btn btn-outline-info" type="submit">Sauvegarder</button>
       <!--Si on choisi de créer une nouvelle tâche le bouton supprimer se mettra en disabled donc il ne marchera pas-->
@@ -26,10 +39,26 @@
 </form>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /end-->
 
+<!--Message à l'utilisateur sur la validation du formulaire begin-->
+<div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.status =='INVALID'">
+  La valeur entrer doit être supérieur ou égal à 3 caractères
+</div>
+<!--Message à l'utilisateur sur la validation du formulaire end-->
+
+
+
+
 
 <!--Va nous afficher sur notre  navigateur web les données du formulaires si on le decommente-->
 <!--
 <pre>
   {{ taskForm.value | json }}
+</pre>
+-->
+
+<!--Va nous afficher sur notre  navigateur web l'état du formulaire du formulaires(valide ou non valide) si on le decommente-->
+<!--
+<pre>
+  {{ taskForm.status | json }}
 </pre>
 -->

@@ -42,7 +42,7 @@ export class TaskListComponent implements OnInit {
     // Va déclencher la fonction pour prendre tous les tâches dans la base de données
     this.taskListService.getTasks().subscribe({
       // next et error sont deux fonctions de base dans le subscribe
-      // tasks => ici veut dire la listes des tasks du fichier json et this.tasks sera la liste des tasks de cette classe
+      // tasks => ici veut dire la listes des tâches du fichier format json de l'api et this.tasks sera la liste des tasks de cette classe
       next: tasks => {
         // insérer la liste des tasks recus dans le fichier json dans la variable
         this.tasks = tasks;

@@ -77,19 +77,25 @@ export class TaskListService {
   }
 
   private handleHttpError(err: HttpErrorResponse) {
+    let error: string;
     if (err.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('Une erreur est survenue:', err.error.message);
+      error = `Une erreur est survenue: ${err.error.message}`;
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(
         `Le backend nous retourne un code ${err.status}, ` +
         `etat du body: ${err.error}`);
+        error = `Le backend nous retourne un code ${err.status}, etat du body: ${err.error}`;
     }
     // Return an observable with a user-facing error message.
     return throwError(
-      'Une incident est survenue; veuillez réessayez plus tard.');
+      'Une erreur est survenue, veuillez réessayez plus tard'
+      + '\n'
+      + error
+    );
   }
 
 

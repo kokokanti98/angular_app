@@ -95,6 +95,7 @@ export class TaskFormComponent implements OnInit {
         // Creer un nouveau task
         if( task.id === 0 || !task.id ){
             this.taskService.createTask(task).subscribe({
+              next: () => this.saveCompleted(),
               error: (err) => this.errorMessage = err
             });
         }
@@ -102,6 +103,7 @@ export class TaskFormComponent implements OnInit {
         else{
           // va déclencher la fonction dans le service pour faire un update(maj)
           this.taskService.updateTask(task).subscribe({
+            next: () => this.saveCompleted(),
             error: (err) => this.errorMessage = err
           });
         }
@@ -109,7 +111,6 @@ export class TaskFormComponent implements OnInit {
       }
     }
     console.log(this.taskForm.value);
-    this.saveCompleted();
   }
   // Fonction pouur supprimer une tache
   public deleteTask(): void {
@@ -142,6 +143,11 @@ export class TaskFormComponent implements OnInit {
     if(!id || id == 0){
       this.router.navigate(['/tasks/0']);
     }
+  }
+
+  // Met en null errorMessage pour par la suite grâce au ngIf cacher le div de errorMessage
+  public hideErrorMessage(): void {
+    this.errorMessage = null;
   }
 
 }
