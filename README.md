@@ -38,3 +38,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Ajout de la possibilité d'afficher des messages d'erreurs du backend(api) avec le code sur la page web avec la possibilité d'éffacer le message d'érreur
 
 ### Ajout du message de validation du formulaire et s'éfface quand l'utilisateur valide le formulaire(minimum 3 caractère entrer sur le formulaire)
+
+## Installation:
+
+### 1- Télécharger le fichier zip
+
+### 2- Entrer dans le repertoire du projet puis installer les paquets via npm install 
+
+### 3- Lancer le projet via npm run start
