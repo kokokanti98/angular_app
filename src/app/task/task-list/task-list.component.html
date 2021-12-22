@@ -11,10 +11,8 @@
   <mat-list>
     <div class="form-check mt-4" *ngFor="let task of tasks">
       <mat-list-item>
-        <input class="form-check-input" type="checkbox" value="" [id]="task.id" (click)="CaseCocher(task.id)" />
-        <label class="form-check-label" for="flexCheckDefault" (click)="getSelectedId(task.id)">
-          {{ task.taskName }}
-        </label>
+        <mat-checkbox class="example-marginform-check-input" #checkboxes id="{{task.id.toString()}}" (change)="CaseCocher($event)">{{ task.taskName }}</mat-checkbox>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="getSelectedId(task.id)">edit</mat-icon>
       </mat-list-item>
       <mat-divider></mat-divider>
     </div>

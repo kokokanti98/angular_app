@@ -15,9 +15,9 @@
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
     <!--Input begin-->
-    <mat-form-field class="form-control example-full-width"  appearance="fill">
+    <mat-form-field class="form-control example-full-width"  appearance="fill" (click) = "AddNavTask(selectedTaskInput.id)">
       <mat-label>Nouvelle Tâche</mat-label>
-      <input class ="" matInput placeholder="Ex: Acheter un livre" formControlName="taskName" (click) = "AddNavTask(selectedTaskInput.id)">
+      <input class ="" matInput placeholder="Ex: Acheter un livre" formControlName="taskName">
     </mat-form-field>
     <!--Input end-->
 

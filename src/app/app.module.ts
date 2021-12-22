@@ -15,9 +15,12 @@ import  { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // Importer le module pour utiliser Guard
 import { TaskGuard } from './task/shared/guards/task.guard';
 // import avec material
-import {MatDividerModule} from '@angular/material/divider';
-import {MatListModule} from '@angular/material/list';
-import {MatInputModule} from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider'; // list
+import {MatListModule} from '@angular/material/list'; // list
+import {MatCheckboxModule} from '@angular/material/checkbox'; // list
+import {MatInputModule} from '@angular/material/input'; // form
+import {MatButtonModule} from '@angular/material/button'; // form
+import {MatIconModule} from '@angular/material/icon';
 
 
 import { AppComponent } from './app.component';
@@ -41,7 +44,10 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     MatDividerModule,
     MatListModule,
+    MatIconModule,
     MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
     FormsModule,
     // Pour utiliser les FormGroup et autres
     ReactiveFormsModule,

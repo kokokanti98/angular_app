@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 // on va importer l'interface ITask du fichier task.ts
 import { ITask } from '../shared/models/task';
 import { Router } from '@angular/router';
 // On va importer les service taskListService
 import { TaskListService } from '../shared/services/task-list.service';
-
+import { MatCheckbox } from '@angular/material/checkbox';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -12,6 +12,8 @@ import { TaskListService } from '../shared/services/task-list.service';
 })
 export class TaskListComponent implements OnInit {
 
+  // Pour  avoir la liste des checkbox 
+  @ViewChildren("checkboxes") checkboxes: QueryList<MatCheckbox>;
   // Titre pour la liste des tâches
   public titleTaslList = 'liste des tâches aujourd\'hui';
   // Variable tasks contient les données de tous les tâches
@@ -53,21 +55,7 @@ export class TaskListComponent implements OnInit {
     this._progress = 0;
     this.nb_chk_case = 0;
   }
-  // Fonction pour récupérer le nb de case cocher par l'utilisateur
-  public CaseCocher(CheckboxId: number): void{
-    // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
-    const selectedCheckBox = document.getElementById(CheckboxId.toString()) as HTMLInputElement;
-    // Si la case à cocher selectionner n'est pas cocher va décrementer le nb
-    if (selectedCheckBox.checked == false){
-      this.nb_chk_case --;
-    }
-    //Sinon on inrecrement le nb
-    else{
-      this.nb_chk_case ++;
-    }
-    console.log("Nb de case cocher sont de :" + this.nb_chk_case);
-    this.ChangerProgressBar(this.nb_chk_case);
-  }
+  
   // Fonction pour Reset
   public Reset(){
     // Va demander la confirmation à l'utilisateur avant d'éxecuter le reset
@@ -75,22 +63,13 @@ export class TaskListComponent implements OnInit {
       // reinitialiser les variables
       this.nb_chk_case = 0;
       this._progress = 0;
-      // uncheck tous les case à cocher
-      // Boucle pour parcourir chaque checkbox
-      for (let i = 1; i <= this.tasks.length*2; i++) {
-        try {
-          // On va stocker dans ce variable l'elemnent HTML CheckBox selectionner
-          const selectedCheckBox = document.getElementById(i.toString()) as HTMLInputElement;
-          // Si la case à cocher est cocher alors on va la non cocher
-          if (selectedCheckBox.checked == true){
-            selectedCheckBox.checked = false;
-          }
-        }
-        catch (error) {
-          //console.error('Here is the error message', error);
-        }
-
-      }
+      //console.log(this.checkboxes);
+      // va parcourir this.checkboxes et pour chaque checkbox de type MatCheckbox va décocher la case
+      this.checkboxes.forEach((checkbox: MatCheckbox) => {
+        //console.log('valeur de checked est:' + checkbox.checked + "sur l'id :" + checkbox.id);
+        // Va décocher tous les case à cocher
+        checkbox.checked = false;
+      });
     }
   }
   // Fonction pour changer la progression du progress bar
@@ -106,9 +85,22 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  // Utilise ca
+  // Pour naviguer entre les différentes tâches
   public getSelectedId(id: number){
     this.router.navigate(['/tasks/'+ id]);
   }
-
+  // Fonction pour récupérer le nb de case cocher par l'utilisateur
+  public CaseCocher($event: any): void{
+    console.log($event.source);
+    console.log($event.source.id);
+    //console.log($event.source._checked);
+    if ($event.source._checked == false){
+      this.nb_chk_case --;
+    }
+    else{
+      this.nb_chk_case ++;
+    }
+    console.log("Nb de case cocher sont de :" + this.nb_chk_case);
+    this.ChangerProgressBar(this.nb_chk_case);
+  }
 }
