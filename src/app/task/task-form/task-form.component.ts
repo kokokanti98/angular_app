@@ -34,7 +34,7 @@ export class TaskFormComponent implements OnInit {
     this.taskForm = this.fb.group({
       taskName: ['', [Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(250)]
+      Validators.maxLength(150)]
       ]
     });
     // On va récuperer la valeur du champ id sur l'url

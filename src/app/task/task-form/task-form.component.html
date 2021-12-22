@@ -10,7 +10,7 @@
     close
   </span>
 </div>
-<h1>{{ pageTitle }}</h1>
+<h1 class="text-white bg-info">{{ pageTitle }}</h1>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
@@ -22,9 +22,16 @@
       formControlName="taskName"
       (click) = "AddNavTask(selectedTaskInput.id)"
     >
-    
+
     <div class="input-group-append">
-      <button class="btn btn-outline-info" type="submit">Sauvegarder</button>
+      <!--Tant que le formulaire n'est pas valide le button pour sauvegarder les données entrer sera pas activer-->
+      <button 
+        class="btn btn-outline-info" 
+        type="submit"
+        [disabled]="taskForm.invalid"
+      >
+        Sauvegarder
+      </button>
       <!--Si on choisi de créer une nouvelle tâche le bouton supprimer se mettra en disabled donc il ne marchera pas-->
       <button
         class="btn btn-outline-danger"
@@ -32,20 +39,33 @@
         [disabled]="selectedTaskInput?.id === 0"
         (click) = "deleteTask()"
       >
-      Supprimer
-    </button>
+        Supprimer
+      </button>
     </div>
   </div>
 </form>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /end-->
 
 <!--Message à l'utilisateur sur la validation du formulaire sur le champ taskName begin-->
-<div *ngIf = "taskForm.get('taskName').invalid && 
-        taskForm.get('taskName').errors && 
+<div *ngIf = "taskForm.get('taskName').invalid &&
+        taskForm.get('taskName').errors &&
         (taskForm.get('taskName').dirty || taskForm.get('taskName').touched)">
-  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('minlength')">
-    La valeur entrer doit être supérieur ou égal à 3 caractères
+
+  <!--Pour dire à l'utilisateur que ce champ est obligatoire-->
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('required')">
+    Ce champ est obligatoire
   </div>
+
+  <!--Dans le cas l'utilisateur entre une valeur inférieur à la valeur minimale autoriser sur le champ taskName du formulaire-->
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('minlength')">
+    La valeur minimale pour ce champ est de {{taskForm.get('taskName').errors['minlength'].requiredLength}} caractères.
+  </div>
+
+  <!--Dans le cas l'utilisateur entre une valeur excédant la maximale autoriser sur le champ taskName du formulaire-->
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('maxlength')">
+    La valeur maximale pour ce champ est de {{taskForm.get('taskName').errors['maxlength'].requiredLength}} caractères.
+  </div>
+
 </div>
 <!--Message à l'utilisateur sur la validation du formulaire sur le champ taskName end-->
 
