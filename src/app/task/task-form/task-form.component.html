@@ -14,14 +14,12 @@
 <!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Nouvelle Tâche"
-      aria-describedby="basic-addon2"
-      formControlName="taskName"
-      (click) = "AddNavTask(selectedTaskInput.id)"
-    >
+    <!--Input begin-->
+    <mat-form-field class="form-control example-full-width"  appearance="fill">
+      <mat-label>Nouvelle Tâche</mat-label>
+      <input class ="" matInput placeholder="Ex. Pizza" value="Sushi" formControlName="taskName" (click) = "AddNavTask(selectedTaskInput.id)">
+    </mat-form-field>
+    <!--Input end-->
 
     <div class="input-group-append">
       <!--Tant que le formulaire n'est pas valide le button pour sauvegarder les données entrer sera pas activer-->

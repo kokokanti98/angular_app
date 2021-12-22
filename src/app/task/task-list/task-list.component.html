@@ -8,18 +8,17 @@
   <!--Title end-->
 
   <!--Code pour afficher la liste des tâches  avec *ngFor begin-->
-  <div class="form-check mt-4" *ngFor = "let task of tasks">
-  <input
-    class="form-check-input"
-    type="checkbox"
-    value=""
-    [id]="task.id"
-    (click) = "CaseCocher(task.id)"
-  />
-  <label class="form-check-label" for="flexCheckDefault" (click) = "getSelectedId(task.id)">
-      {{ task.taskName }}
-  </label>
-  </div>
+  <mat-list>
+    <div class="form-check mt-4" *ngFor="let task of tasks">
+      <mat-list-item>
+        <input class="form-check-input" type="checkbox" value="" [id]="task.id" (click)="CaseCocher(task.id)" />
+        <label class="form-check-label" for="flexCheckDefault" (click)="getSelectedId(task.id)">
+          {{ task.taskName }}
+        </label>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
   <!--Code pour afficher la liste des tâches avec *ngFor end-->
 
   <!--Code pour la progress bar begin-->

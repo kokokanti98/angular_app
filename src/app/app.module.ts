@@ -14,11 +14,18 @@ import { RouterModule } from '@angular/router';
 import  { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // Importer le module pour utiliser Guard
 import { TaskGuard } from './task/shared/guards/task.guard';
+// import avec material
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+
 
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskFormComponent } from './task/task-form/task-form.component';
 import { TaskData } from './task/shared/api/tasks.data';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 // On va appeller puis en passant par paramètre la langue et son abbréviation dans le code
@@ -32,6 +39,9 @@ registerLocaleData(localeFr, 'fr');
   ],
   imports: [
     BrowserModule,
+    MatDividerModule,
+    MatListModule,
+    MatInputModule,
     FormsModule,
     // Pour utiliser les FormGroup et autres
     ReactiveFormsModule,
@@ -52,7 +62,8 @@ registerLocaleData(localeFr, 'fr');
       { path: '**', redirectTo: 'tasks', pathMatch: 'full' }
     ]),
     // Afin d'utiliser l'API d'Angular, il faut preciser la class qu'on va exporter
-    InMemoryWebApiModule.forFeature(TaskData)
+    InMemoryWebApiModule.forFeature(TaskData),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
