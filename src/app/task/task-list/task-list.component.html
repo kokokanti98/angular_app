@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-light rounded">
   <!--Formulaire pour ajouter une nouvelle tâche begin-->
   <app-task-form></app-task-form>
   <!--Formulaire pour ajouter une nouvelle tâche end-->
@@ -6,12 +6,13 @@
   <!--Title begin-->
   <h2>{{ 'Voici la '+ titleTaslList }}</h2>
   <!--Title end-->
+
   <!--Code pour afficher la liste des tâches  avec *ngFor begin-->
-  <div class="form-check container" *ngFor = "let task of tasks">
-  <input 
-    class="form-check-input" 
-    type="checkbox" 
-    value="" 
+  <div class="form-check mt-4" *ngFor = "let task of tasks">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
     [id]="task.id"
     (click) = "CaseCocher(task.id)"
   />
@@ -23,22 +24,22 @@
 
   <!--Code pour la progress bar begin-->
   <div class="progress">
-  <div 
-    class="progress-bar" 
-    role="progressbar" 
-    [style.width.%]="progress" 
-    aria-valuemin="0" 
+  <div
+    class="progress-bar progress-bar-striped"
+    role="progressbar"
+    [style.width.%]="progress"
+    aria-valuemin="0"
     aria-valuemax="100"
     id = "myBar"
   >
-    {{ progress }}
+    {{ progress }} %
   </div>
   </div>
   <!--Code pour la progress bar end-->
 
   <!--Bouton Reset begin-->
-  <button 
-    type="button" 
+  <button
+    type="button"
     class="btn btn-dark"
     (click) = "Reset()"
   >

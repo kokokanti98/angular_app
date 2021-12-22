@@ -10,7 +10,7 @@
     close
   </span>
 </div>
-<h1 class="text-white bg-info">{{ pageTitle }}</h1>
+<h1 class="rounded">{{ pageTitle }}</h1>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
@@ -30,7 +30,7 @@
         type="submit"
         [disabled]="taskForm.invalid"
       >
-        Sauvegarder
+        Enregistrer
       </button>
       <!--Si on choisi de créer une nouvelle tâche le bouton supprimer se mettra en disabled donc il ne marchera pas-->
       <button

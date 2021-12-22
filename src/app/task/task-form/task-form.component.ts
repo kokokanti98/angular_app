@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // Importer du module qu'on a besoin pour le formulaire
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -41,7 +41,7 @@ export class TaskFormComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       //l'assigner à une variable constante id
       const id = +params.get('id')!;
-      console.log("ID(0 ou null pour insertion) de la tâche selectionner maintenant est :" + id);
+      //console.log("ID(0 ou null pour insertion) de la tâche selectionner maintenant est :" + id);
       // Lancer cette fonctions qui va récupérer les données de l'id de la tache selectionner
       this.getSelectedTask(id);
     })
