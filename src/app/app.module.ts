@@ -18,9 +18,10 @@ import { TaskGuard } from './task/shared/guards/task.guard';
 import {MatDividerModule} from '@angular/material/divider'; // list
 import {MatListModule} from '@angular/material/list'; // list
 import {MatCheckboxModule} from '@angular/material/checkbox'; // list
+import {MatIconModule} from '@angular/material/icon'; // list
 import {MatInputModule} from '@angular/material/input'; // form
 import {MatButtonModule} from '@angular/material/button'; // form
-import {MatIconModule} from '@angular/material/icon';
+
 
 
 import { AppComponent } from './app.component';
