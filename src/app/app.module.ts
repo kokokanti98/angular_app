@@ -21,7 +21,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox'; // list
 import { MatIconModule } from '@angular/material/icon'; // list
 import {MatInputModule} from '@angular/material/input'; // form
 import {MatButtonModule} from '@angular/material/button'; // form
-
+import {MatToolbarModule} from '@angular/material/toolbar'; // form
 
 
 import { AppComponent } from './app.component';
@@ -47,6 +47,7 @@ registerLocaleData(localeFr, 'fr');
     MatListModule,
     MatIconModule,
     MatInputModule,
+    MatToolbarModule,
     MatButtonModule,
     MatCheckboxModule,
     FormsModule,

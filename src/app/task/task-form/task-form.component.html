@@ -10,7 +10,16 @@
     close
   </span>
 </div>
-<h1 class="rounded">{{ pageTitle }}</h1>
+  <!--Le titre du formualaire begin-->
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>{{ selectedTaskInput?.id === 0 ? 'play_for_work' : 'check_circle_outline' }}</mat-icon>
+    </button>
+    <span>{{ pageTitle }} </span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <!--Le titre du formualaire end-->
+
 <!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
