@@ -15,31 +15,45 @@
 <form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
   <div class="input-group mb-3">
     <!--Input begin-->
-    <mat-form-field class="form-control example-full-width"  appearance="fill" (click) = "AddNavTask(selectedTaskInput.id)">
+    <mat-form-field class="form-control example-full-width"  appearance="fill">
       <mat-label>Nouvelle Tâche</mat-label>
       <input class ="" matInput placeholder="Ex: Acheter un livre" formControlName="taskName">
     </mat-form-field>
     <!--Input end-->
-
-    <div class="input-group-append">
-      <!--Tant que le formulaire n'est pas valide le button pour sauvegarder les données entrer sera pas activer-->
-      <button 
-        class="btn btn-outline-info" 
-        type="submit"
-        [disabled]="taskForm.invalid"
-      >
-        Enregistrer
-      </button>
+      <div class="example-button-container">
+        <!--Tant que le formulaire n'est pas valide le button pour sauvegarder les données entrer sera pas activer-->
+        <button
+          mat-fab color="primary"
+          aria-label="Ajouter une nouvelle tâches"
+          type="submit"
+          [disabled]="taskForm.invalid"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
       <!--Si on choisi de créer une nouvelle tâche le bouton supprimer se mettra en disabled donc il ne marchera pas-->
-      <button
-        class="btn btn-outline-danger"
-        type="button"
-        [disabled]="selectedTaskInput?.id === 0"
-        (click) = "deleteTask()"
-      >
-        Supprimer
-      </button>
-    </div>
+      <div class="example-button-container">
+        <button 
+          mat-fab color="warn" 
+          aria-label="Supprimer la tâche selectionner"
+          type="button"
+          [disabled]="selectedTaskInput?.id === 0"
+          (click) = "deleteTask()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button 
+          mat-fab color="accent" 
+          aria-label="Annuler les modifications pour revenir sur la page principale"
+          type="button"
+          [disabled]="selectedTaskInput?.id === 0"
+          (click) = "CancelModification()"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
   </div>
 </form>
 <!--Formulaire pour ajout, modification et suppression d'une tâche /end-->

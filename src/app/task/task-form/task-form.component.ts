@@ -94,6 +94,7 @@ export class TaskFormComponent implements OnInit {
         }
         // Creer un nouveau task
         if( task.id === 0 || !task.id ){
+            this.router.navigate(['/tasks/0']);
             this.taskService.createTask(task).subscribe({
               next: () => this.saveCompleted(),
               error: (err) => this.errorMessage = err
@@ -137,11 +138,12 @@ export class TaskFormComponent implements OnInit {
     // Redirection sur la page des liste des tâches
     this.router.navigate(['']);
   }
-  // Pour changer l'url avec url ajout
-  public AddNavTask(id : number){
-    // Si id n existe pas alors on va changer l url
-    if(!id || id == 0){
-      this.router.navigate(['/tasks/0']);
+  // Pour annuler les modifications et retourner sur la page d'accueil
+  public CancelModification(){
+    // demande à l'utilisateur d'abord si il veut vraiment annuler la modification
+    if (confirm(`Voulez-vous réelement annuler les modifications sur ${this.selectedTaskInput.taskName} ?`)) {
+      // retourne sur la page d'accueil
+      this.router.navigate(['']);
     }
   }
 

@@ -87,6 +87,7 @@ export class TaskListComponent implements OnInit {
 
   // Pour naviguer entre les différentes tâches
   public getSelectedId(id: number){
+    //alert(id);
     this.router.navigate(['/tasks/'+ id]);
   }
   // Fonction pour récupérer le nb de case cocher par l'utilisateur

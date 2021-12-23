@@ -12,7 +12,11 @@
     <div class="form-check mt-4" *ngFor="let task of tasks">
       <mat-list-item>
         <mat-checkbox class="example-marginform-check-input" #checkboxes id="{{task.id.toString()}}" (change)="CaseCocher($event)">{{ task.taskName }}</mat-checkbox>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="getSelectedId(task.id)">edit</mat-icon>
+        <div class="example-button-container col-4" (click)="getSelectedId(task.id)">
+          <button class ="edit_btn" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
       </mat-list-item>
       <mat-divider></mat-divider>
     </div>
