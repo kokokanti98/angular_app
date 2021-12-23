@@ -20,4 +20,6 @@
 
 ### Ajout du message de validation du formulaire et s'éfface quand l'utilisateur valide le formulaire(minimum 3 caractère entrer sur le formulaire)
 
+### Ajout d'une option clear pour l'utilisateur afin qu'il/elle puisse ne pas apporter des modifications sur la tâche séléctionner.
+
 
