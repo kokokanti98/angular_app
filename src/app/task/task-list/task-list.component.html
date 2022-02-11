@@ -1,0 +1,57 @@
+<div class="container bg-light rounded">
+  <!--Formulaire pour ajouter une nouvelle tâche begin-->
+  <app-task-form></app-task-form>
+  <!--Formulaire pour ajouter une nouvelle tâche end-->
+
+  <!--Title begin-->
+  <mat-toolbar color="accent">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>assignment_ind</mat-icon>
+    </button>
+    <span>{{ 'Voici la '+ titleTaslList }} </span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <!--Title end-->
+
+  <!--Code pour afficher la liste des tâches  avec *ngFor begin-->
+  <mat-list>
+    <div class="form-check mt-4" *ngFor="let task of tasks">
+      <mat-list-item>
+        <mat-checkbox class="example-marginform-check-input" #checkboxes id="{{task.id.toString()}}" (change)="CaseCocher($event)">{{ task.taskName }}</mat-checkbox>
+        <div class="example-button-container col-4" (click)="getSelectedId(task.id)">
+          <button class ="edit_btn" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+  <!--Code pour afficher la liste des tâches avec *ngFor end-->
+
+  <!--Code pour la progress bar begin-->
+  <div class="progress">
+  <div
+    class="progress-bar progress-bar-striped"
+    role="progressbar"
+    [style.width.%]="progress"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    id = "myBar"
+  >
+    {{ progress }} %
+  </div>
+  </div>
+  <!--Code pour la progress bar end-->
+
+  <!--Bouton Reset begin-->
+  <button
+    type="button"
+    class="btn btn-dark"
+    (click) = "Reset()"
+  >
+    Reset
+  </button>
+  <!--Bouton Reset end-->
+
+</div>

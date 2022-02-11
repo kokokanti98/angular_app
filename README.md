@@ -1,28 +1,27 @@
-# AngularApp
+# Un site web To Do List avec Angular
+ 
+## Version en ligne: https://todoangular.koko.best/
+ 
+## Installation:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
+### 1- Télécharger le fichier zip
 
-## Development server
+### 2- Entrer dans le repertoire du projet puis installer les paquets via npm install 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### 3- Lancer le projet via npm run start
 
-## Code scaffolding
+## Ce qu'on peut faire:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Affichage, suppression, modification et insertion des données des listes des tâches via InMemoryWebAPI Angular
 
-## Build
+### Cocher et décocher les tâches avec une barre de complétion
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Ajout de Guard sur le rootage afin de mieux sécuriser la navigation(dans le cas ou l'utilisateur essaie d'accéder à un url avec valeur de l'id négatif ou pas un nombre)
 
-## Running unit tests
+### Ajout de la possibilité d'afficher des messages d'erreurs du backend(api) avec le code sur la page web avec la possibilité d'éffacer le message d'érreur
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Ajout du message de validation du formulaire et s'éfface quand l'utilisateur valide le formulaire(minimum 3 caractère entrer sur le formulaire)
 
-## Running end-to-end tests
+### Ajout d'une option clear pour l'utilisateur afin qu'il/elle puisse ne pas apporter des modifications sur la tâche séléctionner.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-"# angular_app" 

@@ -1,0 +1,110 @@
+<div
+    class="alert alert-danger mt-2 mb-2 d-flex align-items-center"
+    *ngIf="errorMessage"
+>
+  <!--Si errorMessage existe alors on va afficher notre div pour le message d"erreur-->
+  <!--Puis par la suite si l'utilisateur aura l'option de cliquer sur X pour fermer le message d'érreur de la page-->
+  <span class="material-icons mr-2">error</span>
+    {{ errorMessage }}
+  <span class="material-icons ml-auto" (click)="hideErrorMessage()">
+    close
+  </span>
+</div>
+  <!--Le titre du formualaire begin-->
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>{{ selectedTaskInput?.id === 0 ? 'play_for_work' : 'check_circle_outline' }}</mat-icon>
+    </button>
+    <span>{{ pageTitle }} </span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <!--Le titre du formualaire end-->
+
+<!--Formulaire pour ajout, modification et suppression d'une tâche /begin-->
+<form novalidate  (ngSubmit)="saveTask()" [formGroup]="taskForm">
+  <div class="input-group mb-3">
+    <!--Input begin-->
+    <mat-form-field class="form-control example-full-width"  appearance="fill">
+      <mat-label>Nouvelle Tâche</mat-label>
+      <input class ="" matInput placeholder="Ex: Acheter un livre" formControlName="taskName">
+    </mat-form-field>
+    <!--Input end-->
+      <div class="example-button-container">
+        <!--Tant que le formulaire n'est pas valide le button pour sauvegarder les données entrer sera pas activer-->
+        <button
+          mat-fab color="primary"
+          aria-label="Enregistrer une nouvelle tâches"
+          type="submit"
+          [disabled]="taskForm.invalid"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <!--Si on choisi de créer une nouvelle tâche le bouton supprimer se mettra en disabled donc il ne marchera pas-->
+      <div class="example-button-container">
+        <button 
+          mat-fab color="warn" 
+          aria-label="Supprimer la tâche selectionner"
+          type="button"
+          [disabled]="selectedTaskInput?.id === 0"
+          (click) = "deleteTask()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button 
+          mat-fab color="accent" 
+          aria-label="Annuler les modifications pour revenir sur la page principale"
+          type="button"
+          [disabled]="selectedTaskInput?.id === 0"
+          (click) = "CancelModification()"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+  </div>
+</form>
+<!--Formulaire pour ajout, modification et suppression d'une tâche /end-->
+
+<!--Message à l'utilisateur sur la validation du formulaire sur le champ taskName begin-->
+<div *ngIf = "taskForm.get('taskName').invalid &&
+        taskForm.get('taskName').errors &&
+        (taskForm.get('taskName').dirty || taskForm.get('taskName').touched)">
+
+  <!--Pour dire à l'utilisateur que ce champ est obligatoire-->
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('required')">
+    Ce champ est obligatoire
+  </div>
+
+  <!--Dans le cas l'utilisateur entre une valeur inférieur à la valeur minimale autoriser sur le champ taskName du formulaire-->
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('minlength')">
+    La valeur minimale pour ce champ est de {{taskForm.get('taskName').errors['minlength'].requiredLength}} caractères.
+  </div>
+
+  <!--Dans le cas l'utilisateur entre une valeur excédant la maximale autoriser sur le champ taskName du formulaire-->
+  <div class="alert alert-warning mt-2 mb-2 d-flex align-items-center" *ngIf="taskForm.get('taskName').hasError('maxlength')">
+    La valeur maximale pour ce champ est de {{taskForm.get('taskName').errors['maxlength'].requiredLength}} caractères.
+  </div>
+
+</div>
+<!--Message à l'utilisateur sur la validation du formulaire sur le champ taskName end-->
+
+
+
+
+
+
+<!--Va nous afficher sur notre  navigateur web les données du formulaires si on le decommente-->
+<!--
+<pre>
+  {{ taskForm.value | json }}
+</pre>
+-->
+
+<!--Va nous afficher sur notre  navigateur web l'état du formulaire du formulaires(valide ou non valide) si on le decommente-->
+<!--
+<pre>
+  {{ taskForm.status | json }}
+</pre>
+-->
